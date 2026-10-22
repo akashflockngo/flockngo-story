@@ -110,6 +110,8 @@ export const Header: React.FC = () => {
               alt="FlocknGo — Experience Together"
               width={140}
               height={38}
+              fetchPriority="high"
+              decoding="async"
               className="h-8 sm:h-9 w-auto object-contain transition-transform duration-200 group-hover:opacity-90"
             />
           </a>

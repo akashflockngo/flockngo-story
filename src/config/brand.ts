@@ -72,7 +72,8 @@ export const BRAND_CONFIG = {
   assets: {
     video: '/media/flockngo-story.mp4',
     videoPoster: '/images/story/video-poster-cinematic.webp',
-    logo: '/images/flockngo-logo.png',
+    logo: '/images/flockngo-logo.webp',
+    logoFallback: '/images/flockngo-logo.png',
     favicon: '/favicon.png',
     
     // Premium Story Campaign Assets (WebP, optimized)
