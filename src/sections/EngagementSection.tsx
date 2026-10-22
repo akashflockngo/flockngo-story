@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { BRAND_CONFIG } from '../config/brand'
 import { BarChart2, Bell, Check, Image, FileText, Download } from 'lucide-react'
 import { useScrollAnimation, gsap } from '../hooks/useScrollAnimation'
+import { OptimizedImage } from '../components/ui/OptimizedImage'
 
 export const EngagementSection: React.FC = () => {
   const [selectedOption, setSelectedOption] = useState<number>(0)
@@ -164,13 +165,13 @@ export const EngagementSection: React.FC = () => {
 
                 {/* Cell C: Media Vault Screen using authentic high-res community memories (sm:col-span-5) */}
                 <div className="sm:col-span-5 rounded-2xl overflow-hidden bg-black border border-[#F3E5D8] aspect-[4/3] relative group shadow-sm">
-                  <img
+                  <OptimizedImage
                     src={BRAND_CONFIG.assets.communityMemories}
                     alt="Sahyadri Trekkers community members celebrating at mountain summit during sunset"
-                    loading="lazy"
+                    containerClassName="w-full h-full"
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent flex items-end p-3">
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent flex items-end p-3 z-10 pointer-events-none">
                     <div className="text-xs text-white flex items-center justify-between w-full">
                       <span className="font-bold flex items-center gap-1.5 text-xs">
                         <Image className="w-3.5 h-3.5 text-[#F47721]" />

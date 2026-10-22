@@ -10,9 +10,31 @@ import { PaymentsSection } from './sections/PaymentsSection'
 import { EngagementSection } from './sections/EngagementSection'
 import { FinalBrandSection } from './sections/FinalBrandSection'
 import { ScrollTrigger } from './config/gsap'
+import { BRAND_CONFIG } from './config/brand'
+import { preloadImage } from './services/queryClient'
+import { initFilmFrameLoader } from './services/filmFrameLoader'
 
 export const App: React.FC = () => {
   useEffect(() => {
+    // 1. Kick off prioritized film sequence loader in background
+    initFilmFrameLoader()
+
+    // 2. Preload critical above-the-fold brand images
+    preloadImage(BRAND_CONFIG.assets.heroBrand)
+    preloadImage(BRAND_CONFIG.assets.logo)
+
+    // 3. Stagger preload near-fold section images on idle
+    const idlePreload = () => {
+      preloadImage(BRAND_CONFIG.assets.community)
+      preloadImage(BRAND_CONFIG.assets.activityCreation)
+    }
+
+    if ('requestIdleCallback' in window) {
+      window.requestIdleCallback(idlePreload)
+    } else {
+      setTimeout(idlePreload, 200)
+    }
+
     // Initial layout calculation after child components mount
     const timer = setTimeout(() => {
       ScrollTrigger.refresh()

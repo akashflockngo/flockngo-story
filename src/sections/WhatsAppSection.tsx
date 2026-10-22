@@ -2,6 +2,7 @@ import React from 'react'
 import { BRAND_CONFIG } from '../config/brand'
 import { MessageSquare, ArrowRight, ShieldCheck, CheckCheck } from 'lucide-react'
 import { useScrollAnimation, gsap } from '../hooks/useScrollAnimation'
+import { OptimizedImage } from '../components/ui/OptimizedImage'
 
 export const WhatsAppSection: React.FC = () => {
   const containerRef = useScrollAnimation<HTMLElement>((_ctx, container, reducedMotion) => {
@@ -95,13 +96,13 @@ export const WhatsAppSection: React.FC = () => {
                   </div>
 
                   <div className="w-full aspect-[9/16] rounded-2xl overflow-hidden bg-slate-900 border border-[#F3E5D8] relative group">
-                    <img
+                    <OptimizedImage
                       src={BRAND_CONFIG.assets.whatsappInvitation}
                       alt="Smartphone on wooden table receiving an activity invitation notification"
-                      loading="lazy"
+                      containerClassName="w-full h-full"
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                     />
-                    <div className="absolute bottom-3 left-3 right-3 p-3 rounded-xl bg-black/75 backdrop-blur-md border border-white/10 text-white text-xs space-y-1">
+                    <div className="absolute bottom-3 left-3 right-3 p-3 rounded-xl bg-black/75 backdrop-blur-md border border-white/10 text-white text-xs space-y-1 z-10">
                       <div className="flex items-center gap-1.5 text-[#25D366] font-bold text-[11px]">
                         <MessageSquare className="w-3 h-3" />
                         <span>Sahyadri Trekkers</span>

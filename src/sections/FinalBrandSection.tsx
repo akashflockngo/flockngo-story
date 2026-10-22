@@ -2,6 +2,7 @@ import React from 'react'
 import { BRAND_CONFIG } from '../config/brand'
 import { ArrowUpRight, MessageSquare, Check } from 'lucide-react'
 import { useScrollAnimation, gsap } from '../hooks/useScrollAnimation'
+import { OptimizedImage } from '../components/ui/OptimizedImage'
 
 export const FinalBrandSection: React.FC = () => {
   const containerRef = useScrollAnimation<HTMLElement>((_ctx, container, reducedMotion) => {
@@ -34,10 +35,10 @@ export const FinalBrandSection: React.FC = () => {
     >
       {/* Editorial Twilight Ambient Campfire Backdrop with High-Contrast Overlay */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none select-none">
-        <img
+        <OptimizedImage
           src={BRAND_CONFIG.assets.closingBrand}
           alt=""
-          loading="lazy"
+          containerClassName="w-full h-full"
           className="w-full h-full object-cover object-bottom opacity-20 mix-blend-screen scale-105 transition-transform duration-1000"
           aria-hidden="true"
         />

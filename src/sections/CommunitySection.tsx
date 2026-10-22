@@ -2,6 +2,7 @@ import React from 'react'
 import { BRAND_CONFIG } from '../config/brand'
 import { Plus, Share2, ShieldCheck, Users, Copy, Check } from 'lucide-react'
 import { useScrollAnimation, gsap } from '../hooks/useScrollAnimation'
+import { OptimizedImage } from '../components/ui/OptimizedImage'
 
 export const CommunitySection: React.FC = () => {
   const [copied, setCopied] = React.useState(false)
@@ -144,13 +145,13 @@ export const CommunitySection: React.FC = () => {
                 
                 {/* Editorial Photography Frame: Real Community Organizers & Members */}
                 <div className="sm:col-span-6 rounded-2xl overflow-hidden bg-[#FFF9F5] border border-[#F3E5D8] aspect-[4/3] relative group shadow-sm">
-                  <img
+                  <OptimizedImage
                     src={BRAND_CONFIG.assets.community}
                     alt="Authentic FlocknGo community members planning an outdoor trek together"
-                    loading="lazy"
+                    containerClassName="w-full h-full"
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
-                  <div className="absolute top-2 left-2 px-2 py-0.5 rounded bg-white/95 border border-[#F3E5D8] text-[10px] font-mono text-[#E74728] font-bold shadow-2xs">
+                  <div className="absolute top-2 left-2 px-2 py-0.5 rounded bg-white/95 border border-[#F3E5D8] text-[10px] font-mono text-[#E74728] font-bold shadow-2xs z-10">
                     COMMUNITY CULTURE
                   </div>
                 </div>

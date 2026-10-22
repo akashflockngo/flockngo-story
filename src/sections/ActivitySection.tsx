@@ -2,6 +2,7 @@ import React from 'react'
 import { BRAND_CONFIG } from '../config/brand'
 import { Calendar, MapPin, Users, CheckCircle2, ArrowRight, Clock } from 'lucide-react'
 import { useScrollAnimation, gsap } from '../hooks/useScrollAnimation'
+import { OptimizedImage } from '../components/ui/OptimizedImage'
 
 export const ActivitySection: React.FC = () => {
   const containerRef = useScrollAnimation<HTMLElement>((_ctx, container, reducedMotion) => {
@@ -90,10 +91,10 @@ export const ActivitySection: React.FC = () => {
                     <span>FLOCKNGO APP</span>
                   </div>
                   <div className="w-full aspect-[9/16] rounded-2xl overflow-hidden bg-slate-950 relative group">
-                    <img
+                    <OptimizedImage
                       src={BRAND_CONFIG.assets.activityCreation}
                       alt="Organizer hand planning an activity on modern smartphone screen with trail map"
-                      loading="lazy"
+                      containerClassName="w-full h-full"
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-3 pointer-events-none">
@@ -114,14 +115,14 @@ export const ActivitySection: React.FC = () => {
                   <div className="rounded-2xl bg-white/[0.05] border border-white/10 shadow-2xl overflow-hidden backdrop-blur-sm relative">
                     {/* Activity Participation Banner: Sunrise Trek to Rajgad Fort */}
                     <div className="w-full h-32 relative overflow-hidden">
-                      <img
+                      <OptimizedImage
                         src={BRAND_CONFIG.assets.activityParticipation}
                         alt="Sahyadri Trekkers ascending Rajgad Fort mountain ridge at sunrise"
-                        loading="lazy"
+                        containerClassName="w-full h-full"
                         className="w-full h-full object-cover"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-transparent to-black/30" />
-                      <div className="absolute top-2.5 left-2.5">
+                      <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-transparent to-black/30 z-10" />
+                      <div className="absolute top-2.5 left-2.5 z-20">
                         <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-[#F47721] text-white shadow-xs">
                           TREK & CAMP
                         </span>

@@ -2,6 +2,7 @@ import React from 'react'
 import { BRAND_CONFIG } from '../config/brand'
 import { Shield, ArrowRight, Check, CreditCard, Sparkles, UserCheck } from 'lucide-react'
 import { useScrollAnimation, gsap } from '../hooks/useScrollAnimation'
+import { OptimizedImage } from '../components/ui/OptimizedImage'
 
 export const PaymentsSection: React.FC = () => {
   const containerRef = useScrollAnimation<HTMLElement>((_ctx, container, reducedMotion) => {
@@ -93,13 +94,13 @@ export const PaymentsSection: React.FC = () => {
 
               {/* Editorial Product Photography: Frictionless Mobile Checkout */}
               <div className="w-full h-36 rounded-2xl overflow-hidden relative group border border-white/10 shadow-inner">
-                <img
+                <OptimizedImage
                   src={BRAND_CONFIG.assets.registrationPayment}
                   alt="Contactless verified mobile payment on dark granite surface"
-                  loading="lazy"
+                  containerClassName="w-full h-full"
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-transparent to-black/20 flex items-end p-3">
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-transparent to-black/20 flex items-end p-3 z-10 pointer-events-none">
                   <div className="flex items-center justify-between w-full text-xs">
                     <span className="font-mono text-[10px] text-slate-300 bg-black/60 px-2 py-0.5 rounded border border-white/10">
                       INSTANT UPI / CARD VERIFICATION

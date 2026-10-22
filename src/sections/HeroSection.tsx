@@ -2,6 +2,7 @@ import React from 'react'
 import { BRAND_CONFIG } from '../config/brand'
 import { ArrowDown, ArrowUpRight } from 'lucide-react'
 import { useScrollAnimation, gsap } from '../hooks/useScrollAnimation'
+import { OptimizedImage } from '../components/ui/OptimizedImage'
 
 export const HeroSection: React.FC = () => {
   const containerRef = useScrollAnimation<HTMLElement>((_ctx, container, reducedMotion) => {
@@ -55,10 +56,11 @@ export const HeroSection: React.FC = () => {
     >
       {/* Subtle, restrained warm ambient light & premium brand introduction backdrop */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none select-none">
-        <img
+        <OptimizedImage
           src={BRAND_CONFIG.assets.heroBrand}
           alt=""
-          loading="eager"
+          priority={true}
+          containerClassName="w-full h-full"
           className="w-full h-full object-cover object-center opacity-15 mix-blend-luminosity scale-105 transition-transform duration-1000"
           aria-hidden="true"
         />
