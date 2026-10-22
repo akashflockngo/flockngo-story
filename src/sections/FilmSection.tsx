@@ -1,17 +1,22 @@
 import React, { useRef, useState, useEffect, useCallback } from 'react'
 import { BRAND_CONFIG } from '../config/brand'
 import { gsap, ScrollTrigger } from '../config/gsap'
+import {
+  TOTAL_FRAMES,
+  initFilmFrameLoader,
+  getNearestLoadedFrame,
+} from '../services/filmFrameLoader'
+import { useAssetStore } from '../store/useAssetStore'
 // import { MessageSquare, ArrowUpRight, Compass, Sparkles } from 'lucide-react'
-
-const TOTAL_FRAMES = 240
 
 export const FilmSection: React.FC = () => {
   const sectionRef = useRef<HTMLElement | null>(null)
   const stageRef = useRef<HTMLDivElement | null>(null)
   const canvasRef = useRef<HTMLCanvasElement | null>(null)
-  const imagesRef = useRef<(HTMLImageElement | null)[]>([])
   const currentFrameRef = useRef<number>(0)
-  const isLoadedRef = useRef<boolean>(false)
+
+  const filmLoadedCount = useAssetStore((state) => state.filmLoadedCount)
+  const filmKeyframesReady = useAssetStore((state) => state.filmKeyframesReady)
 
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(() => {
     if (typeof window !== 'undefined') {
@@ -37,28 +42,9 @@ export const FilmSection: React.FC = () => {
     const ctx = canvas.getContext('2d')
     if (!ctx) return
 
-    // Pick target image or nearest loaded fallback
-    let img = imagesRef.current[index]
-    if (!img || !img.complete) {
-      // Search backward for nearest loaded frame
-      for (let i = index - 1; i >= 0; i--) {
-        if (imagesRef.current[i]?.complete) {
-          img = imagesRef.current[i]
-          break
-        }
-      }
-      // If none found backward, search forward
-      if (!img || !img.complete) {
-        for (let i = index + 1; i < TOTAL_FRAMES; i++) {
-          if (imagesRef.current[i]?.complete) {
-            img = imagesRef.current[i]
-            break
-          }
-        }
-      }
-    }
-
-    if (!img || !img.complete) return
+    // Pick target image or nearest loaded fallback from optimized frame registry
+    const img = getNearestLoadedFrame(index)
+    if (!img || !img.complete || img.naturalWidth === 0) return
 
     const dpr = typeof window !== 'undefined' ? Math.min(window.devicePixelRatio || 1, 2) : 1
     const rect = canvas.getBoundingClientRect()
@@ -86,53 +72,30 @@ export const FilmSection: React.FC = () => {
     ctx.drawImage(img, 0, 0, iWidth, iHeight, drawX, drawY, drawWidth, drawHeight)
   }, [])
 
-  // Progressive frame preloading
+  // Start prioritized film preloading (concurrency throttled, keyframes first)
   useEffect(() => {
     if (prefersReducedMotion) return
+    initFilmFrameLoader()
 
-    imagesRef.current = new Array(TOTAL_FRAMES).fill(null)
-
-    // Load first frame with immediate priority to eliminate any blank initial flash
-    const firstImg = new Image()
-    firstImg.src = `/frames/frame_000.webp`
-    firstImg.onload = () => {
-      imagesRef.current[0] = firstImg
-      renderFrame(0)
-      isLoadedRef.current = true
-    }
-
-    // Preload remaining frames in progressive batches
-    const loadRemainingFrames = () => {
-      for (let i = 1; i < TOTAL_FRAMES; i++) {
-        const img = new Image()
-        const padded = i.toString().padStart(3, '0')
-        img.src = `/frames/frame_${padded}.webp`
-        img.onload = () => {
-          imagesRef.current[i] = img
-          // If the user happens to be paused at this frame, render it
-          if (currentFrameRef.current === i) {
-            renderFrame(i)
-          }
-        }
-      }
-    }
-
-    if ('requestIdleCallback' in window) {
-      window.requestIdleCallback(loadRemainingFrames)
-    } else {
-      setTimeout(loadRemainingFrames, 80)
-    }
-
-    // Window resize handler for crisp canvas rerender
     const handleResize = () => {
       renderFrame(currentFrameRef.current)
     }
     window.addEventListener('resize', handleResize, { passive: true })
 
+    // Render initial frame as soon as frame 0 is fetched
+    renderFrame(0)
+
     return () => {
       window.removeEventListener('resize', handleResize)
     }
   }, [prefersReducedMotion, renderFrame])
+
+  // Rerender current frame when keyframes become available
+  useEffect(() => {
+    if (filmLoadedCount > 0) {
+      renderFrame(currentFrameRef.current)
+    }
+  }, [filmLoadedCount, renderFrame])
 
   // GSAP ScrollTrigger Canvas Sequence Scrubbing with Master-Grade Story Pacing
   useEffect(() => {
@@ -391,6 +354,14 @@ export const FilmSection: React.FC = () => {
             </p>
           </div>
         </div>
+
+        {/* Subtle buffering progress pill - only shown briefly until keyframes are ready */}
+        {!filmKeyframesReady && (
+          <div className="absolute bottom-6 right-6 z-40 px-3.5 py-1.5 rounded-full bg-black/80 backdrop-blur-md border border-white/10 text-xs font-mono text-slate-300 flex items-center gap-2 pointer-events-none transition-opacity duration-300">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#F47721] animate-ping" />
+            <span>Buffering film {Math.min(100, Math.round((filmLoadedCount / 30) * 100))}%</span>
+          </div>
+        )}
       </div>
     </section>
   )
