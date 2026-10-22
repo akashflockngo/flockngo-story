@@ -50,11 +50,6 @@ export const EngagementSection: React.FC = () => {
           
           {/* Left Column: Feature Narrative */}
           <div className="lg:col-span-5 space-y-6">
-            {/* Eyebrow */}
-            <div className="eng-text-reveal inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FFF0E6] border border-[#F3E5D8] text-xs font-mono font-bold tracking-wider text-[#E74728] uppercase">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#F47721]" />
-              <span>05 / ACTIVITY ENGAGEMENT</span>
-            </div>
 
             {/* Headline per specification: “Keep the conversation connected to the experience.” */}
             <h2 className="eng-text-reveal display-chapter text-[#111111] tracking-tight text-balance">

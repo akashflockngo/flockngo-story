@@ -68,12 +68,6 @@ export const HeroSection: React.FC = () => {
 
       <div className="container-cinematic relative z-10 text-center">
         <div className="max-w-4xl mx-auto space-y-8 md:space-y-10">
-          
-          {/* Eyebrow Badge */}
-          <div className="hero-animate hero-eyebrow inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.04] border border-white/[0.1] text-xs font-mono font-semibold text-slate-300 tracking-wider uppercase">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#F47721]" />
-            <span>FlocknGo Brand Launch</span>
-          </div>
 
           {/* Headline per specification: “Every community has a story.” */}
           <h1 className="display-hero text-white tracking-[-0.035em] text-balance">

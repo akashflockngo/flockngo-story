@@ -50,12 +50,6 @@ export const CommunitySection: React.FC = () => {
           
           {/* Left Column: Editorial Narrative & How-It-Works Breakdown */}
           <div className="lg:col-span-5 space-y-6">
-            
-            {/* Eyebrow Label */}
-            <div className="comm-text-reveal inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FFF0E6] border border-[#F3E5D8] text-xs font-mono font-bold tracking-wider text-[#E74728] uppercase">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#F47721]" />
-              <span>01 / COMMUNITY</span>
-            </div>
 
             {/* Headline per specification: “Bring your people together.” */}
             <h2 className="comm-text-reveal display-chapter text-[#111111] tracking-tight text-balance">

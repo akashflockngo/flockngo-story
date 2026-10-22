@@ -47,22 +47,6 @@ export const FinalBrandSection: React.FC = () => {
 
       <div className="container-cinematic relative z-10 w-full my-auto text-center">
         <div className="max-w-3xl mx-auto space-y-8 md:space-y-10">
-          
-          {/* Eyebrow */}
-          <div className="final-reveal inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.06] border border-white/[0.1] text-xs font-mono font-bold tracking-wider text-[#F47721] uppercase">
-            <span>START BUILDING TODAY</span>
-          </div>
-
-          {/* Official FlocknGo Logo Presentation */}
-          <div className="final-reveal">
-            <img
-              src={BRAND_CONFIG.assets.logo}
-              alt="FlocknGo — Experience Together"
-              width={200}
-              height={56}
-              className="h-12 sm:h-16 w-auto object-contain mx-auto"
-            />
-          </div>
 
           {/* Headline per specification: “Stop managing groups. Start building communities.” */}
           <h2 className="final-reveal display-chapter text-white tracking-tight text-balance">

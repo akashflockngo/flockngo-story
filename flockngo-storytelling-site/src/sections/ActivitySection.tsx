@@ -35,48 +35,43 @@ export const ActivitySection: React.FC = () => {
     <section
       ref={containerRef}
       id="activities"
-      className="relative py-28 sm:py-36 bg-[#FFFCF8] text-[#111111] overflow-hidden border-t border-[#F3E5D8]"
+      className="relative py-28 sm:py-36 bg-[#0A0D14] text-white overflow-hidden border-t border-white/[0.08]"
     >
       <div className="container-cinematic relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-          
+
           {/* Left Column: Editorial Narrative */}
           <div className="lg:col-span-5 space-y-6">
-            {/* Eyebrow */}
-            <div className="act-text-reveal inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FFF0E6] border border-[#F3E5D8] text-xs font-mono font-bold tracking-wider text-[#E74728] uppercase">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#F47721]" />
-              <span>02 / CREATE ACTIVITIES</span>
-            </div>
 
             {/* Headline per specification: “Turn your next idea into a real experience.” */}
-            <h2 className="act-text-reveal display-chapter text-[#111111] tracking-tight text-balance">
+            <h2 className="act-text-reveal display-chapter text-white tracking-tight text-balance">
               Turn your next idea into a real experience.
             </h2>
 
             {/* Supporting Copy per specification: “Create an activity, share its details, and give members a clear way to participate.” */}
-            <p className="act-text-reveal text-base sm:text-lg text-[#3A3A3A] font-normal leading-relaxed text-balance">
+            <p className="act-text-reveal text-base sm:text-lg text-slate-300 font-normal leading-relaxed text-balance">
               Create an activity, share its details, and give members a clear way to participate.
             </p>
 
             {/* Structured Breakdown */}
             <div className="act-text-reveal space-y-3 pt-2">
-              <div className="flex items-start gap-3.5 p-4 rounded-2xl bg-white border border-[#F3E5D8] shadow-xs">
-                <div className="w-8 h-8 rounded-xl bg-[#FFF0E6] text-[#F47721] flex items-center justify-center font-mono font-bold text-xs shrink-0 mt-0.5">
+              <div className="flex items-start gap-3.5 p-4 rounded-2xl bg-white/[0.04] border border-white/[0.08]">
+                <div className="w-8 h-8 rounded-xl bg-[#F47721] text-white flex items-center justify-center font-mono font-bold text-xs shrink-0 mt-0.5">
                   1
                 </div>
                 <div className="text-xs space-y-0.5">
-                  <span className="font-bold text-[#111111] text-sm block">Define Dates & Itinerary</span>
-                  <span className="text-[#6B7280] leading-relaxed">Set departure timing, pickup points, and gear checklists in one unified form.</span>
+                  <span className="font-bold text-white text-sm block">Define Dates & Itinerary</span>
+                  <span className="text-slate-400 leading-relaxed">Set departure timing, pickup points, and gear checklists in one unified form.</span>
                 </div>
               </div>
 
-              <div className="flex items-start gap-3.5 p-4 rounded-2xl bg-white border border-[#F3E5D8] shadow-xs">
-                <div className="w-8 h-8 rounded-xl bg-[#FFF0E6] text-[#F47721] flex items-center justify-center font-mono font-bold text-xs shrink-0 mt-0.5">
+              <div className="flex items-start gap-3.5 p-4 rounded-2xl bg-white/[0.04] border border-white/[0.08]">
+                <div className="w-8 h-8 rounded-xl bg-[#F47721] text-white flex items-center justify-center font-mono font-bold text-xs shrink-0 mt-0.5">
                   2
                 </div>
                 <div className="text-xs space-y-0.5">
-                  <span className="font-bold text-[#111111] text-sm block">Cap Spots & Automate Rosters</span>
-                  <span className="text-[#6B7280] leading-relaxed">Set max participant limits. FlocknGo manages waitlists and confirmations automatically.</span>
+                  <span className="font-bold text-white text-sm block">Cap Spots & Automate Rosters</span>
+                  <span className="text-slate-400 leading-relaxed">Set max participant limits. FlocknGo manages waitlists and confirmations automatically.</span>
                 </div>
               </div>
             </div>
@@ -85,24 +80,24 @@ export const ActivitySection: React.FC = () => {
           {/* Right Column: Dominant Visual Demonstration (Creation form transitioning into live activity card) */}
           <div className="lg:col-span-7">
             <div className="act-stage-reveal relative mx-auto max-w-xl">
-              
+
               <div className="grid grid-cols-1 sm:grid-cols-12 gap-5 items-center">
-                
+
                 {/* Visual A: Actual Activity Planning & Device in Organizer Hands */}
-                <div className="sm:col-span-6 rounded-3xl overflow-hidden bg-white border border-[#F3E5D8] p-3 shadow-xl">
-                  <div className="flex items-center justify-between text-[11px] font-mono text-[#6B7280] px-1 pb-2">
+                <div className="sm:col-span-6 rounded-3xl overflow-hidden bg-slate-900 border border-white/10 p-3 shadow-2xl">
+                  <div className="flex items-center justify-between text-[11px] font-mono text-slate-400 px-1 pb-2">
                     <span className="text-[#F47721] font-bold">ORGANISER PLANNING</span>
                     <span>FLOCKNGO APP</span>
                   </div>
-                  <div className="w-full aspect-[9/16] rounded-2xl overflow-hidden bg-slate-100 relative group border border-[#F3E5D8]/60">
+                  <div className="w-full aspect-[9/16] rounded-2xl overflow-hidden bg-slate-950 relative group">
                     <img
                       src={BRAND_CONFIG.assets.activityCreation}
                       alt="Organizer hand planning an activity on modern smartphone screen with trail map"
                       loading="lazy"
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent flex items-end p-3 pointer-events-none">
-                      <span className="text-[10px] font-mono font-bold text-white bg-black/60 px-2 py-0.5 rounded border border-white/20">
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-3 pointer-events-none">
+                      <span className="text-[10px] font-mono font-bold text-white/90 bg-black/60 px-2 py-0.5 rounded border border-white/10">
                         CURATING EXPERIENCE
                       </span>
                     </div>
@@ -111,12 +106,12 @@ export const ActivitySection: React.FC = () => {
 
                 {/* Visual B: Resulting Live Activity Pass with Tactile Detail & Real Trek Imagery */}
                 <div className="sm:col-span-6 space-y-4">
-                  <div className="flex items-center gap-2 text-xs font-mono text-[#E74728] uppercase font-bold">
+                  <div className="flex items-center gap-2 text-xs font-mono text-[#F47721] uppercase font-bold">
                     <span>Generated Activity Pass</span>
                     <ArrowRight className="w-3.5 h-3.5" />
                   </div>
 
-                  <div className="rounded-2xl bg-white border border-[#F3E5D8] shadow-xl overflow-hidden relative">
+                  <div className="rounded-2xl bg-white/[0.05] border border-white/10 shadow-2xl overflow-hidden backdrop-blur-sm relative">
                     {/* Activity Participation Banner: Sunrise Trek to Rajgad Fort */}
                     <div className="w-full h-32 relative overflow-hidden">
                       <img
@@ -125,7 +120,7 @@ export const ActivitySection: React.FC = () => {
                         loading="lazy"
                         className="w-full h-full object-cover"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/20" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-transparent to-black/30" />
                       <div className="absolute top-2.5 left-2.5">
                         <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-[#F47721] text-white shadow-xs">
                           TREK & CAMP
@@ -136,41 +131,41 @@ export const ActivitySection: React.FC = () => {
                     <div className="p-4 space-y-3.5">
                       {/* Badge & Title */}
                       <div className="space-y-1">
-                        <h3 className="text-base font-bold text-[#111111] leading-snug">
+                        <h3 className="text-base font-bold text-white leading-snug">
                           Rajgad Fort Night Trek & Sunrise
                         </h3>
-                        <p className="text-xs text-[#6B7280]">Hosted by Sahyadri Trekkers</p>
+                        <p className="text-xs text-slate-400">Hosted by Sahyadri Trekkers</p>
                       </div>
 
-                    {/* Schedule & Location Details */}
-                    <div className="space-y-2 text-xs text-[#3A3A3A] pt-2 border-t border-[#F3E5D8]">
-                      <div className="flex items-center gap-2">
-                        <Calendar className="w-4 h-4 text-[#F47721] shrink-0" />
-                        <span>Saturday, 11:00 PM – Sunday, 10:00 AM</span>
+                      {/* Schedule & Location Details */}
+                      <div className="space-y-2 text-xs text-slate-300 pt-2 border-t border-white/[0.08]">
+                        <div className="flex items-center gap-2">
+                          <Calendar className="w-4 h-4 text-[#F47721] shrink-0" />
+                          <span>Saturday, 11:00 PM – Sunday, 10:00 AM</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <MapPin className="w-4 h-4 text-[#F47721] shrink-0" />
+                          <span>Gunjawane Base Village • Pune</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <Users className="w-4 h-4 text-[#10B981] shrink-0" />
+                          <span className="font-semibold text-white">20 Spot Limit (18 Confirmed)</span>
+                        </div>
                       </div>
-                      <div className="flex items-center gap-2">
-                        <MapPin className="w-4 h-4 text-[#F47721] shrink-0" />
-                        <span>Gunjawane Base Village • Pune</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <Users className="w-4 h-4 text-[#059669] shrink-0" />
-                        <span className="font-semibold text-[#111111]">20 Spot Limit (18 Confirmed)</span>
-                      </div>
-                    </div>
 
-                    {/* Action Bar */}
-                    <div className="pt-3 border-t border-[#F3E5D8] flex items-center justify-between">
-                      <div className="flex items-center gap-1.5 text-xs font-semibold text-[#059669]">
-                        <CheckCircle2 className="w-4 h-4" />
-                        <span>RSVP Open</span>
+                      {/* Action Bar */}
+                      <div className="pt-3 border-t border-white/[0.08] flex items-center justify-between">
+                        <div className="flex items-center gap-1.5 text-xs font-semibold text-[#10B981]">
+                          <CheckCircle2 className="w-4 h-4" />
+                          <span>RSVP Open</span>
+                        </div>
+                        <span className="text-xs font-bold text-[#F47721]">Instant Share Link →</span>
                       </div>
-                      <span className="text-xs font-bold text-[#F47721]">Instant Share Link →</span>
                     </div>
                   </div>
-                </div>
 
-                {/* Micro Annotation */}
-                  <div className="p-3 rounded-xl bg-[#FFF9F5] border border-[#F3E5D8] text-[11px] text-[#6B7280] flex items-center gap-2">
+                  {/* Micro Annotation */}
+                  <div className="p-3 rounded-xl bg-white/[0.03] border border-white/[0.06] text-[11px] text-slate-400 flex items-center gap-2">
                     <Clock className="w-4 h-4 text-[#F47721] shrink-0" />
                     <span>Published instantly across member calendars with zero delay.</span>
                   </div>

@@ -39,14 +39,9 @@ export const WhatsAppSection: React.FC = () => {
     >
       <div className="container-cinematic relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-          
+
           {/* Left Column: Feature Narrative */}
           <div className="lg:col-span-5 space-y-6">
-            {/* Eyebrow */}
-            <div className="wa-text-reveal inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E8F8EE] border border-[#25D366]/30 text-xs font-mono font-bold tracking-wider text-[#128C7E] uppercase">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#25D366]" />
-              <span>03 / DIRECT INVITATIONS</span>
-            </div>
 
             {/* Headline per specification: “Important updates deserve to be seen.” */}
             <h2 className="wa-text-reveal display-chapter text-[#111111] tracking-tight text-balance">
@@ -86,9 +81,9 @@ export const WhatsAppSection: React.FC = () => {
           {/* Right Column: Comparative Graphic Representation (Real Video Frames) */}
           <div className="lg:col-span-7">
             <div className="wa-cards-stage relative mx-auto max-w-xl">
-              
+
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 items-center">
-                
+
                 {/* Visual A: Studio-Quality Smartphone Notification on Wooden Surface */}
                 <div className="rounded-3xl overflow-hidden bg-white border border-[#F3E5D8] p-3.5 shadow-[0_12px_40px_rgba(0,0,0,0.06)] space-y-3">
                   <div className="flex items-center justify-between text-xs font-mono text-[#6B7280] px-1">

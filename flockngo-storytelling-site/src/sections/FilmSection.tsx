@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect, useCallback } from 'react'
 import { BRAND_CONFIG } from '../config/brand'
 import { gsap, ScrollTrigger } from '../config/gsap'
-import { MessageSquare, ArrowUpRight, Compass, Sparkles } from 'lucide-react'
+// import { MessageSquare, ArrowUpRight, Compass, Sparkles } from 'lucide-react'
 
 const TOTAL_FRAMES = 240
 
@@ -248,10 +248,7 @@ export const FilmSection: React.FC = () => {
       >
         <div className="container-cinematic text-center space-y-8">
           <div className="film-header max-w-2xl mx-auto text-center space-y-4">
-            <div className="eyebrow-badge text-slate-400">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#F47721]" />
-              <span>THE 20-SECOND FILM</span>
-            </div>
+
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white tracking-tight">
               See the experience unfold.
             </h2>
@@ -321,63 +318,59 @@ export const FilmSection: React.FC = () => {
 
         {/* Top Cinematic Intro Header (Gracefully fades out as user scrubs forward) */}
         <div className="film-header-overlay absolute top-24 sm:top-28 md:top-32 left-0 right-0 z-30 pointer-events-none px-6">
-          <div className="max-w-3xl mx-auto text-center space-y-3">
-            <div className="eyebrow-badge inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.06] border border-white/[0.12] text-xs font-mono font-bold tracking-wider text-slate-300 uppercase backdrop-blur-md">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#F47721] animate-pulse" />
-              <span>THE 20-SECOND FILM</span>
-            </div>
-            <h2 className="text-2xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight drop-shadow-md">
+          <div className="max-w-3xl mx-auto text-center space-y-4">
+            <h2 className="text-3xl sm:text-5xl md:text-6xl font-black text-white tracking-tight drop-shadow-md leading-tight">
               See the experience unfold.
             </h2>
-            <p className="text-sm sm:text-base text-slate-300 max-w-xl mx-auto font-normal drop-shadow-sm">
+            <p className="text-base sm:text-xl text-slate-200 max-w-2xl mx-auto font-normal drop-shadow-sm leading-relaxed">
               A quiet phone on a desk, an incoming invitation, and a connected community coming together.
             </p>
           </div>
         </div>
 
         {/* Dynamic Story Beat 1: Alert arrives on desk */}
-        <div className="film-beat-1 absolute bottom-24 sm:bottom-28 left-6 sm:left-12 z-30 pointer-events-none opacity-0">
-          <div className="p-4 sm:p-5 rounded-2xl bg-black/85 backdrop-blur-md border border-white/15 shadow-2xl max-w-xs sm:max-w-md space-y-1.5">
-            <div className="flex items-center gap-1.5 text-[#25D366] font-mono font-bold text-[11px] uppercase tracking-wider">
-              <MessageSquare className="w-3.5 h-3.5" />
+        <div className="film-beat-1 absolute bottom-24 sm:bottom-28 left-6 sm:left-14 z-30 pointer-events-none opacity-0">
+          <div className="p-6 sm:p-8 rounded-3xl lg:bg-black/90 backdrop-blur-xl border border-white/20 shadow-[0_20px_60px_rgba(0,0,0,0.85)] max-w-md sm:max-w-xl space-y-3">
+            {/* <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#25D366]/15 border border-[#25D366]/30 text-[#25D366] font-mono font-bold text-xs sm:text-sm uppercase tracking-wider">
+              <MessageSquare className="w-4 h-4" />
               <span>10:42 AM • Direct WhatsApp Alert</span>
-            </div>
-            <h3 className="text-sm sm:text-base text-white font-bold leading-snug">
+            </div> */}
+            <h3 className="text-xl sm:text-2xl md:text-3xl font-extrabold text-white leading-snug tracking-tight">
               An invitation that actually gets seen.
             </h3>
-            <p className="text-xs sm:text-sm text-slate-300 font-normal leading-relaxed">
+            <p className="text-sm sm:text-base md:text-lg text-slate-200 font-normal leading-relaxed">
               Delivered directly to attendee WhatsApp — no noisy 500-person group chats, just personal updates and clear action links.
             </p>
           </div>
         </div>
 
         {/* Dynamic Story Beat 2: Direct reservation & pass */}
-        <div className="film-beat-2 absolute bottom-24 sm:bottom-28 right-6 sm:right-12 z-30 pointer-events-none opacity-0">
-          <div className="p-4 sm:p-5 rounded-2xl bg-black/85 backdrop-blur-md border border-white/15 shadow-2xl max-w-xs sm:max-w-md space-y-1.5 text-right">
-            <div className="flex items-center justify-end gap-1.5 text-[#F47721] font-mono font-bold text-[11px] uppercase tracking-wider">
+        <div className="film-beat-2 absolute bottom-24 sm:bottom-28 right-6 sm:right-14 z-30 pointer-events-none opacity-0">
+          <div className="p-6 sm:p-8 rounded-3xl lg:bg-black/90 backdrop-blur-xl border border-white/20 shadow-[0_20px_60px_rgba(0,0,0,0.85)] max-w-md sm:max-w-xl space-y-3 text-right">
+            {/* <div className="inline-flex items-center justify-end gap-2 px-3.5 py-1.5 rounded-full bg-[#F47721]/15 border border-[#F47721]/30 text-[#F47721] font-mono font-bold text-xs sm:text-sm uppercase tracking-wider ml-auto">
               <span>1-Tap Itinerary Pass</span>
-              <ArrowUpRight className="w-3.5 h-3.5" />
-            </div>
-            <h3 className="text-sm sm:text-base text-white font-bold leading-snug">
+              <ArrowUpRight className="w-4 h-4" />
+            </div> */}
+            <h3 className="text-xl sm:text-2xl md:text-3xl font-extrabold text-white leading-snug tracking-tight">
               Instant RSVP & verified roster spot.
             </h3>
-            <p className="text-xs sm:text-sm text-slate-300 font-normal leading-relaxed">
+            <p className="text-sm sm:text-base md:text-lg text-slate-200 font-normal leading-relaxed">
               Rajgad Fort Night Trek • Verified spot #18 locked with pickup location, gear checklist, and automated payment reconciliation.
             </p>
           </div>
         </div>
 
         {/* Dynamic Story Beat 3: Real human connection on the trail */}
-        <div className="film-beat-3 absolute bottom-24 sm:bottom-28 left-6 sm:left-12 z-30 pointer-events-none opacity-0">
-          <div className="p-4 sm:p-5 rounded-2xl bg-black/85 backdrop-blur-md border border-white/15 shadow-2xl max-w-xs sm:max-w-md space-y-1.5">
-            <div className="flex items-center gap-1.5 text-[#F47721] font-mono font-bold text-[11px] uppercase tracking-wider">
-              <Compass className="w-3.5 h-3.5" />
+        <div className="film-beat-3 absolute bottom-24 sm:bottom-28 left-6 sm:left-14 z-30 pointer-events-none opacity-0">
+          <div className="p-6 sm:p-8 rounded-3xl lg:bg-black/90 backdrop-blur-xl border border-white/20 shadow-[0_20px_60px_rgba(0,0,0,0.85)] max-w-md sm:max-w-xl space-y-3">
+            {/* <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#F47721]/15 border border-[#F47721]/30 text-[#F47721] font-mono font-bold text-xs sm:text-sm uppercase tracking-wider">
+              <Compass className="w-4 h-4" />
               <span>Community In Real Life</span>
-            </div>
-            <h3 className="text-sm sm:text-base text-white font-bold leading-snug">
+            </div> */}
+            <h3 className="text-xl sm:text-2xl md:text-3xl font-extrabold text-white leading-snug tracking-tight">
               Turning online chats into shared memories.
             </h3>
-            <p className="text-xs sm:text-sm text-slate-300 font-normal leading-relaxed">
+            <p className="text-sm sm:text-base md:text-lg text-slate-200 font-normal leading-relaxed">
               Hikers scaling the mountain ridge at sunrise. Real people sharing real adventures, building communities that stay together.
             </p>
           </div>
@@ -385,15 +378,15 @@ export const FilmSection: React.FC = () => {
 
         {/* Outro Overlay: Final resolution leading cleanly into Chapter 01 */}
         <div className="film-outro-overlay absolute inset-x-0 bottom-20 sm:bottom-24 z-30 pointer-events-none text-center opacity-0 px-6">
-          <div className="max-w-xl mx-auto space-y-2.5 p-6 rounded-3xl bg-black/90 backdrop-blur-md border border-white/15 shadow-2xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FFF0E6]/10 border border-[#F47721]/30 text-xs font-mono font-bold tracking-widest text-[#F47721] uppercase">
-              <Sparkles className="w-3.5 h-3.5" />
+          <div className="max-w-2xl mx-auto space-y-4 p-8 sm:p-10 rounded-3xl lg:bg-black/95 backdrop-blur-2xl border border-white/20 shadow-[0_30px_70px_rgba(0,0,0,0.9)]">
+            {/* <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#FFF0E6]/10 border border-[#F47721]/30 text-xs sm:text-sm font-mono font-bold tracking-widest text-[#F47721] uppercase">
+              <Sparkles className="w-4 h-4" />
               <span>01 / CREATE COMMUNITIES</span>
-            </div>
-            <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
+            </div> */}
+            <h3 className="text-2xl sm:text-4xl md:text-5xl font-black text-white tracking-tight leading-tight">
               From a quiet notification to a thriving community.
             </h3>
-            <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+            <p className="text-sm sm:text-lg md:text-xl text-slate-200 leading-relaxed font-normal">
               Scroll down to discover how organizers build, launch, and grow on FlocknGo ↓
             </p>
           </div>
