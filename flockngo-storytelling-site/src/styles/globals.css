@@ -1,0 +1,193 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  
+  --color-orange-signature: #F47721;
+  --color-orange-flame: #E74728;
+  --color-orange-marigold: #EF7F23;
+  
+  --color-charcoal-void: #0A0D14;
+  --color-charcoal-pure: #111111;
+  --color-charcoal-surface: #161B26;
+  --color-charcoal-border: rgba(255, 255, 255, 0.08);
+
+  --color-warm-white: #FFFCF8;
+  --color-warm-peach: #FFF0E6;
+  --color-warm-highlight: #FFF4EB;
+  --color-warm-border: #F3E5D8;
+  --color-warm-divider: #EAE0D5;
+
+  --color-ink-dark: #111111;
+  --color-ink-body: #3A3A3A;
+  --color-ink-muted: #6B7280;
+
+  --color-whatsapp: #25D366;
+  --color-status-emerald: #10B981;
+}
+
+/* Base resets & typography */
+html {
+  font-family: var(--font-sans);
+  scroll-behavior: smooth;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  background-color: #0A0D14;
+  color: #111111;
+}
+
+/* Custom selection */
+::selection {
+  background-color: rgba(244, 119, 33, 0.2);
+  color: #E74728;
+}
+
+/* Focus styles */
+:focus-visible {
+  outline: 2px solid #F47721;
+  outline-offset: 3px;
+}
+
+/* Typography Scale & Editorial Rhythm */
+.display-hero {
+  font-size: clamp(2.5rem, 6vw, 4.75rem);
+  font-weight: 800;
+  line-height: 1.08;
+  letter-spacing: -0.035em;
+}
+
+.display-chapter {
+  font-size: clamp(2rem, 4.5vw, 3.5rem);
+  font-weight: 800;
+  line-height: 1.12;
+  letter-spacing: -0.03em;
+}
+
+.sub-display {
+  font-size: clamp(1rem, 1.5vw, 1.25rem);
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+.eyebrow-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* Refined Primary & Secondary Buttons */
+.btn-cinematic-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1.75rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: #FFFFFF !important;
+  background-color: #F47721;
+  border-radius: 9999px;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+  border: 1px solid transparent;
+}
+
+.btn-cinematic-primary:hover {
+  background-color: #E06815;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(244, 119, 33, 0.28);
+}
+
+.btn-cinematic-primary:active {
+  transform: scale(0.98);
+}
+
+.btn-cinematic-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1.75rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  border-radius: 9999px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.btn-cinematic-secondary-dark {
+  color: #E2E8F0;
+  background-color: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(12px);
+}
+
+.btn-cinematic-secondary-dark:hover {
+  color: #FFFFFF;
+  background-color: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.25);
+  transform: translateY(-1px);
+}
+
+.btn-cinematic-secondary-light {
+  color: #111111;
+  background-color: #FFFFFF;
+  border: 1px solid #F3E5D8;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.btn-cinematic-secondary-light:hover {
+  border-color: #F47721;
+  color: #F47721;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(244, 119, 33, 0.12);
+}
+
+/* Container system */
+.container-cinematic {
+  width: 100%;
+  max-width: 82rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+@media (min-width: 1024px) {
+  .container-cinematic {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+  }
+}
+
+@media (min-width: 1440px) {
+  .container-cinematic {
+    max-width: 86rem;
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+}
+
+/* Reduced Motion Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
