@@ -143,7 +143,7 @@ export const Footer: React.FC = () => {
                 href={BRAND_CONFIG.links.googlePlay}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/[0.04] border border-white/10 hover:border-[#F47721] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#F47721]"
+                className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg glass-pill-dark hover:border-[#F47721]/50 hover:bg-white/[0.08] transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-[#F47721]"
               >
                 <img
                   src={BRAND_CONFIG.assets.googlePlay}
@@ -161,7 +161,7 @@ export const Footer: React.FC = () => {
                 href={BRAND_CONFIG.links.appStore}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/[0.04] border border-white/10 hover:border-[#F47721] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#F47721]"
+                className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg glass-pill-dark hover:border-[#F47721]/50 hover:bg-white/[0.08] transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-[#F47721]"
               >
                 <img
                   src={BRAND_CONFIG.assets.appStore}

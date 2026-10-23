@@ -2,11 +2,11 @@
 
 @theme {
   --font-sans: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  
+
   --color-orange-signature: #F47721;
   --color-orange-flame: #E74728;
   --color-orange-marigold: #EF7F23;
-  
+
   --color-charcoal-void: #0A0D14;
   --color-charcoal-pure: #111111;
   --color-charcoal-surface: #161B26;
@@ -29,8 +29,8 @@
 /* Base resets & typography */
 html {
   font-family: var(--font-sans);
-  scroll-behavior: smooth;
   text-rendering: optimizeLegibility;
+  scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -100,13 +100,14 @@ body {
   border-radius: 9999px;
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   cursor: pointer;
-  border: 1px solid transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 14px rgba(244, 119, 33, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.25);
 }
 
 .btn-cinematic-primary:hover {
   background-color: #E06815;
   transform: translateY(-1px);
-  box-shadow: 0 4px 16px rgba(244, 119, 33, 0.28);
+  box-shadow: 0 6px 20px rgba(244, 119, 33, 0.36), inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
 
 .btn-cinematic-primary:active {
@@ -123,36 +124,152 @@ body {
   font-weight: 600;
   letter-spacing: -0.01em;
   border-radius: 9999px;
-  transition: all 0.2s ease;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   cursor: pointer;
 }
 
 .btn-cinematic-secondary-dark {
   color: #E2E8F0;
-  background-color: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  backdrop-filter: blur(12px);
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.14);
 }
 
 .btn-cinematic-secondary-dark:hover {
   color: #FFFFFF;
-  background-color: rgba(255, 255, 255, 0.12);
-  border-color: rgba(255, 255, 255, 0.25);
+  background-color: rgba(255, 255, 255, 0.10);
+  border-color: rgba(255, 255, 255, 0.28);
   transform: translateY(-1px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.22);
 }
 
 .btn-cinematic-secondary-light {
   color: #111111;
-  background-color: #FFFFFF;
-  border: 1px solid #F3E5D8;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  background-color: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(243, 229, 216, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04), inset 0 1px 0 #FFFFFF;
 }
 
 .btn-cinematic-secondary-light:hover {
   border-color: #F47721;
   color: #F47721;
+  background-color: #FFFFFF;
   transform: translateY(-1px);
-  box-shadow: 0 4px 14px rgba(244, 119, 33, 0.12);
+  box-shadow: 0 6px 18px rgba(244, 119, 33, 0.12), inset 0 1px 0 #FFFFFF;
+}
+
+/* ==========================================================================
+   Classic Premium Glassmorphism Design System
+   ========================================================================== */
+
+/* Dark Theme Glass Surface (Primary Panels & Stages) */
+.glass-surface-dark {
+  background: rgba(14, 18, 27, 0.68);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.14);
+}
+
+/* Dark Theme Glass Cards (Interactive Feature Cards) */
+.glass-card-dark {
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.10);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-card-dark:hover {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(255, 255, 255, 0.20);
+  transform: translateY(-2px);
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.16);
+}
+
+/* Light Theme Glass Surface (Warm Alabaster Frosted Glass Stage) */
+.glass-surface-light {
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 255, 255, 0.95);
+  box-shadow: 0 20px 50px rgba(17, 17, 17, 0.04), inset 0 1px 0 #FFFFFF;
+}
+
+/* Light Theme Glass Cards (Interactive Cards in Light Sections) */
+.glass-card-light {
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(243, 229, 216, 0.85);
+  box-shadow: 0 8px 24px rgba(17, 17, 17, 0.03), inset 0 1px 0 #FFFFFF;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-card-light:hover {
+  background: rgba(255, 255, 255, 0.98);
+  border-color: rgba(244, 119, 33, 0.30);
+  transform: translateY(-2px);
+  box-shadow: 0 16px 36px rgba(244, 119, 33, 0.08), inset 0 1px 0 #FFFFFF;
+}
+
+/* Glass Pill Badges */
+.glass-pill-dark {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+.glass-pill-light {
+  background: rgba(255, 255, 255, 0.90);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(243, 229, 216, 0.95);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02), inset 0 1px 0 #FFFFFF;
+}
+
+/* Fallback for browsers without backdrop-filter support */
+@supports not (backdrop-filter: blur(1px)) {
+  .glass-surface-dark {
+    background: #0E131E;
+  }
+  .glass-card-dark {
+    background: #141923;
+  }
+  .glass-surface-light,
+  .glass-card-light {
+    background: #FFFFFF;
+  }
+}
+
+/* Reduced transparency support */
+@media (prefers-reduced-transparency: reduce) {
+  .glass-surface-dark,
+  .glass-card-dark,
+  .glass-surface-light,
+  .glass-card-light,
+  .glass-pill-dark,
+  .glass-pill-light {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+  .glass-surface-dark {
+    background: #0E131E !important;
+  }
+  .glass-card-dark {
+    background: #141923 !important;
+  }
+  .glass-surface-light,
+  .glass-card-light {
+    background: #FFFFFF !important;
+  }
 }
 
 /* Container system */
@@ -189,6 +306,7 @@ body {
 
 /* Reduced Motion Accessibility */
 @media (prefers-reduced-motion: reduce) {
+
   *,
   *::before,
   *::after {

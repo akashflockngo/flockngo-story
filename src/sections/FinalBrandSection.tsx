@@ -62,7 +62,7 @@ export const FinalBrandSection: React.FC = () => {
 
           {/* Official Brand Manifesto Line per specification: “Build Communities. Drive Engagement. Grow Your Business.” */}
           <div className="final-reveal py-2">
-            <span className="font-mono text-xs sm:text-sm tracking-wider uppercase text-slate-300 font-semibold px-4 py-2 rounded-2xl sm:rounded-full bg-white/[0.04] border border-white/[0.08] inline-block leading-relaxed">
+            <span className="font-mono text-xs sm:text-sm tracking-wider uppercase text-slate-200 font-semibold px-5 py-2.5 rounded-2xl sm:rounded-full glass-pill-dark inline-block leading-relaxed border border-white/12 shadow-sm">
               {BRAND_CONFIG.manifesto}
             </span>
           </div>

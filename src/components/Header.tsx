@@ -149,7 +149,7 @@ export const Header: React.FC = () => {
         isVisible ? 'translate-y-0' : '-translate-y-full pointer-events-none'
       } ${
         isScrolled || mobileMenuOpen
-          ? 'bg-[#0A0D14]/95 backdrop-blur-md border-b border-white/[0.08] py-3 sm:py-1 shadow-xl'
+          ? 'bg-[#0A0D14]/80 backdrop-blur-xl border-b border-white/[0.10] py-3 sm:py-1 shadow-[0_8px_32px_rgba(0,0,0,0.4),inset_0_-1px_0_rgba(255,255,255,0.06)]'
           : 'bg-transparent py-4 sm:py-1'
       }`}
     >
@@ -219,7 +219,7 @@ export const Header: React.FC = () => {
             <button
               type="button"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 -mr-1.5 rounded-lg text-slate-300 hover:text-white hover:bg-white/[0.08] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#F47721] touch-manipulation"
+              className="p-2 -mr-1.5 rounded-xl text-slate-300 hover:text-white hover:bg-white/[0.08] border border-transparent hover:border-white/10 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#F47721] touch-manipulation"
               aria-label={mobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
               aria-expanded={mobileMenuOpen}
               aria-controls="mobile-navigation-drawer"
@@ -235,7 +235,7 @@ export const Header: React.FC = () => {
         <>
           {/* Backdrop overlay */}
           <div
-            className="md:hidden fixed inset-0 z-40 bg-black/70 backdrop-blur-sm transition-opacity"
+            className="md:hidden fixed inset-0 z-40 bg-black/60 backdrop-blur-md transition-opacity"
             onClick={() => setMobileMenuOpen(false)}
             aria-hidden="true"
           />
@@ -246,7 +246,7 @@ export const Header: React.FC = () => {
             role="dialog"
             aria-modal="true"
             aria-label="Mobile Navigation Drawer"
-            className="md:hidden fixed inset-x-0 top-[56px] sm:top-[62px] z-50 max-h-[calc(100dvh-56px)] sm:max-h-[calc(100dvh-62px)] overflow-y-auto overscroll-contain bg-[#0A0D14]/98 border-b border-white/[0.08] px-5 py-6 pb-8 backdrop-blur-2xl shadow-2xl transition-all"
+            className="md:hidden fixed inset-x-0 top-[56px] sm:top-[62px] z-50 max-h-[calc(100dvh-56px)] sm:max-h-[calc(100dvh-62px)] overflow-y-auto overscroll-contain bg-[#0A0D14]/90 border-b border-white/[0.12] px-5 py-6 pb-8 backdrop-blur-2xl shadow-[0_24px_60px_rgba(0,0,0,0.65),inset_0_1px_0_rgba(255,255,255,0.12)] transition-all"
           >
             <div className="flex flex-col space-y-3.5">
               {BRAND_CONFIG.navigation.map((item) => {
@@ -256,7 +256,7 @@ export const Header: React.FC = () => {
                     key={item.id}
                     href={item.href}
                     onClick={(e) => handleNavClick(e, item.href)}
-                    className={`text-base font-semibold py-2.5 px-2 rounded-lg transition-colors flex items-center justify-between border-b border-white/[0.04] ${isActive ? 'text-[#F47721] bg-white/[0.04]' : 'text-slate-200 hover:text-white'
+                    className={`text-base font-semibold py-2.5 px-3 rounded-xl transition-all flex items-center justify-between border ${isActive ? 'text-[#F47721] bg-white/[0.06] border-white/10 shadow-xs' : 'text-slate-200 hover:text-white hover:bg-white/[0.04] border-transparent'
                       }`}
                     aria-current={isActive ? 'page' : undefined}
                   >

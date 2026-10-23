@@ -54,18 +54,18 @@ export const HeroSection: React.FC = () => {
       id="story"
       className="relative min-h-[100svh] flex flex-col justify-center pt-16 pb-6 sm:pt-20 sm:pb-8 md:pt-24 md:pb-10 bg-[#0A0D14] text-white overflow-hidden"
     >
-      {/* Subtle, restrained warm ambient light & premium brand introduction backdrop */}
+      {/* Ambient backdrop and clearly visible hero banner image */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none select-none">
         <OptimizedImage
           src={BRAND_CONFIG.assets.heroBrand}
-          alt=""
+          alt="FlocknGo community brand banner"
           priority={true}
           containerClassName="w-full h-full"
-          className="w-full h-full object-cover object-center opacity-15 mix-blend-luminosity scale-105 transition-transform duration-1000"
+          className="w-full h-full object-cover object-center opacity-45 sm:opacity-55 scale-105 transition-transform duration-1000"
           aria-hidden="true"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0A0D14]/90 via-[#0A0D14]/80 to-[#0A0D14]" />
-        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[360px] bg-[#F47721]/[0.08] rounded-full blur-[140px]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0A0D14]/75 via-[#0A0D14]/65 to-[#0A0D14]" />
+        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[360px] bg-[#F47721]/[0.10] rounded-full blur-[140px]" />
       </div>
 
       <div className="container-cinematic relative z-10 text-center">
