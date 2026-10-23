@@ -24,7 +24,7 @@ export const BRAND_CONFIG = {
   manifesto: 'Build Communities. Drive Engagement. Grow Your Business.',
   officialSiteUrl: 'https://flockngo.com/',
   primaryCtaUrl: 'https://new.flockngo.com/',
-  
+
   // Official social and contact destinations (verified from live production)
   links: {
     primaryCta: 'https://new.flockngo.com/',
@@ -72,10 +72,10 @@ export const BRAND_CONFIG = {
   assets: {
     video: '/media/flockngo-story.mp4',
     videoPoster: '/images/story/video-poster-cinematic.webp',
-    logo: '/images/flockngo-logo.webp',
+    logo: '/images/flockngo-logo.png',
     logoFallback: '/images/flockngo-logo.png',
     favicon: '/favicon.png',
-    
+
     // Premium Story Campaign Assets (WebP, optimized)
     heroBrand: '/images/story/hero-brand.webp',
     community: '/images/story/community.webp',
