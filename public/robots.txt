@@ -1,0 +1,28 @@
+# Robots.txt for FlocknGo Story (https://flockngo-story.vercel.app/)
+User-agent: *
+Allow: /
+
+# Googlebot family
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /images/
+
+User-agent: Googlebot-Video
+Allow: /media/
+
+# Bingbot
+User-agent: Bingbot
+Allow: /
+
+# AI Search Assistants (Search Discovery & Real-Time Answers)
+# Note: Allows search citation and indexing; does not grant training permissions
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+# Sitemap Index
+Sitemap: https://flockngo-story.vercel.app/sitemap.xml

@@ -10,28 +10,124 @@
     <meta name="description" content="Turn WhatsApp chaos into structured community experiences. Fill every seat, run every event, and bring people back with FlocknGo." />
     <meta name="application-name" content="FlocknGo" />
     <meta name="theme-color" content="#EF7F23" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://flockngo-story.vercel.app/" />
     
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="/favicon.png" />
     <link rel="apple-touch-icon" href="/favicon.png" />
 
-    <!-- Open Graph / Social Media -->
+    <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://flockngo.com/" />
-    <meta property="og:title" content="FlocknGo — Cinematic Brand Story & Operating Layer" />
+    <meta property="og:site_name" content="FlocknGo" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:url" content="https://flockngo-story.vercel.app/" />
+    <meta property="og:title" content="FlocknGo — The Operating Layer for Experience-Led Businesses & Communities" />
     <meta property="og:description" content="Turn WhatsApp chaos into structured community experiences. Fill every seat, run every event, and bring people back." />
-    <meta property="og:image" content="/images/brand-splash.jpeg" />
+    <meta property="og:image" content="https://flockngo-story.vercel.app/images/story/hero-brand.webp" />
+    <meta property="og:image:secure_url" content="https://flockngo-story.vercel.app/images/story/hero-brand.webp" />
+    <meta property="og:image:type" content="image/webp" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="FlocknGo — Every community has a story. Turn shared passions into real-world experiences." />
 
     <!-- Twitter Meta -->
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@FlocknGo" />
     <meta name="twitter:title" content="FlocknGo — Experience Together" />
     <meta name="twitter:description" content="Turn WhatsApp chaos into structured community experiences. One workspace to fill every seat, run every event, and bring people back." />
-    <meta name="twitter:image" content="/images/story/hero-brand.webp" />
+    <meta name="twitter:image" content="https://flockngo-story.vercel.app/images/story/hero-brand.webp" />
+    <meta name="twitter:image:alt" content="FlocknGo — Cinematic Brand Story" />
 
     <!-- High-Priority LCP Asset Preloads -->
     <link rel="preload" as="image" href="/images/story/hero-brand.webp" type="image/webp" fetchpriority="high" />
-    <link rel="preload" as="image" href="/images/flockngo-logo.webp" type="image/webp" />
-    <link rel="preload" as="image" href="/frames/frame_000.webp" type="image/webp" />
+    <link rel="preload" as="image" href="/images/flockngo-logo.png" type="image/png" />
+
+    <!-- Comprehensive Structured Data (JSON-LD Graph) -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Organization",
+            "@id": "https://flockngo.com/#organization",
+            "name": "FlocknGo",
+            "url": "https://flockngo.com/",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://flockngo-story.vercel.app/images/flockngo-logo.png",
+              "width": 512,
+              "height": 512
+            },
+            "sameAs": [
+              "https://www.linkedin.com/company/flockngo",
+              "https://www.youtube.com/@FlocknGo"
+            ],
+            "contactPoint": {
+              "@type": "ContactPoint",
+              "telephone": "+91-96074-76642",
+              "contactType": "customer service",
+              "availableLanguage": ["English", "Hindi"]
+            }
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://flockngo-story.vercel.app/#website",
+            "url": "https://flockngo-story.vercel.app/",
+            "name": "FlocknGo Story",
+            "description": "The Operating Layer for Experience-Led Businesses & Communities",
+            "publisher": {
+              "@id": "https://flockngo.com/#organization"
+            }
+          },
+          {
+            "@type": "WebPage",
+            "@id": "https://flockngo-story.vercel.app/#webpage",
+            "url": "https://flockngo-story.vercel.app/",
+            "name": "FlocknGo — The Operating Layer for Experience-Led Businesses & Communities",
+            "isPartOf": {
+              "@id": "https://flockngo-story.vercel.app/#website"
+            },
+            "about": {
+              "@id": "https://flockngo.com/#organization"
+            },
+            "description": "Turn WhatsApp chaos into structured community experiences. Fill every seat, run every event, and bring people back with FlocknGo.",
+            "primaryImageOfPage": {
+              "@type": "ImageObject",
+              "url": "https://flockngo-story.vercel.app/images/story/hero-brand.webp"
+            }
+          },
+          {
+            "@type": "VideoObject",
+            "@id": "https://flockngo-story.vercel.app/#film",
+            "name": "FlocknGo Brand Story Film",
+            "description": "A cinematic journey illustrating how FlocknGo turns unstructured group chats into vibrant real-world communities and memorable experiences.",
+            "thumbnailUrl": [
+              "https://flockngo-story.vercel.app/images/story/video-poster-desktop.webp",
+              "https://flockngo-story.vercel.app/images/story/video-poster-cinematic.webp"
+            ],
+            "uploadDate": "2026-10-23T00:00:00+05:30",
+            "duration": "PT20S",
+            "contentUrl": "https://flockngo-story.vercel.app/media/flockngo-story-1080p.mp4",
+            "embedUrl": "https://flockngo-story.vercel.app/#film",
+            "publisher": {
+              "@id": "https://flockngo.com/#organization"
+            }
+          },
+          {
+            "@type": "SoftwareApplication",
+            "@id": "https://flockngo-story.vercel.app/#software",
+            "name": "FlocknGo",
+            "operatingSystem": "Web, iOS, Android",
+            "applicationCategory": "BusinessApplication",
+            "description": "The operating layer for experience-led businesses and communities. Host activities, manage automated WhatsApp invitations, handle registrations, and collect instant payments with zero customer app installs required.",
+            "author": {
+              "@id": "https://flockngo.com/#organization"
+            }
+          }
+        ]
+      }
+    </script>
 
     <!-- Google Fonts: Manrope -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />

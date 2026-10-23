@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset 
+  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+  xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+  <url>
+    <loc>https://flockngo-story.vercel.app/</loc>
+    <lastmod>2026-10-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    
+    <!-- Hero Brand Image -->
+    <image:image>
+      <image:loc>https://flockngo-story.vercel.app/images/story/hero-brand.webp</image:loc>
+      <image:title>FlocknGo Hero Brand Story</image:title>
+      <image:caption>Every community has a story — Turn shared passions into real-world experiences.</image:caption>
+    </image:image>
+
+    <!-- Community Feature Image -->
+    <image:image>
+      <image:loc>https://flockngo-story.vercel.app/images/story/community.webp</image:loc>
+      <image:title>Create Communities on FlocknGo</image:title>
+      <image:caption>Gather your people and build a thriving, dedicated community space.</image:caption>
+    </image:image>
+
+    <!-- Activity Creation Feature Image -->
+    <image:image>
+      <image:loc>https://flockngo-story.vercel.app/images/story/activity-creation.webp</image:loc>
+      <image:title>Plan and Host Activities</image:title>
+      <image:caption>Host outdoor treks, workshops, and gatherings in minutes.</image:caption>
+    </image:image>
+
+    <!-- WhatsApp Integration Feature Image -->
+    <image:image>
+      <image:loc>https://flockngo-story.vercel.app/images/story/whatsapp-invitation.webp</image:loc>
+      <image:title>WhatsApp Community Invitations</image:title>
+      <image:caption>Direct 1-to-1 sync and invitations without requiring guest app installs.</image:caption>
+    </image:image>
+
+    <!-- Payments & Registration Feature Image -->
+    <image:image>
+      <image:loc>https://flockngo-story.vercel.app/images/story/registration-payment.webp</image:loc>
+      <image:title>Frictionless Registration and Instant Payments</image:title>
+      <image:caption>Instant UPI, card, and digital checkout with zero drop-off.</image:caption>
+    </image:image>
+
+    <!-- Engagement & Memories Feature Image -->
+    <image:image>
+      <image:loc>https://flockngo-story.vercel.app/images/story/community-memories.webp</image:loc>
+      <image:title>Shared Community Memories Vault</image:title>
+      <image:caption>Collaborative photo albums and participant feedback vault.</image:caption>
+    </image:image>
+
+    <!-- Cinematic Brand Film -->
+    <video:video>
+      <video:thumbnail_loc>https://flockngo-story.vercel.app/images/story/video-poster-desktop.webp</video:thumbnail_loc>
+      <video:title>FlocknGo Brand Story — The Operating Layer for Experience-Led Businesses</video:title>
+      <video:description>Watch the cinematic film illustrating how FlocknGo turns WhatsApp chaos into structured real-world community experiences.</video:description>
+      <video:content_loc>https://flockngo-story.vercel.app/media/flockngo-story-1080p.mp4</video:content_loc>
+      <video:player_loc>https://flockngo-story.vercel.app/#film</video:player_loc>
+      <video:duration>20</video:duration>
+      <video:publication_date>2026-10-23T00:00:00+05:30</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:live>no</video:live>
+    </video:video>
+  </url>
+</urlset>
