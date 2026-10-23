@@ -119,18 +119,34 @@ export const FilmSection: React.FC = () => {
           end: () => (window.innerWidth < 768 ? '+=4400' : '+=6200'),
           pin: true,
           pinSpacing: true,
-          scrub: 0.8, // 0.8s smooth damping for luxurious cinematic scroll response
+          scrub: 0.15, // Snappy 0.15s scrub eliminates lag backlog and card queueing during rapid scroll
           anticipatePin: 1,
+          fastScrollEnd: true, // Prevents card animations from playing catch-up when scrolling fast
+          preventOverlaps: true, // Prevents conflicting tweens during high-velocity navigation
           invalidateOnRefresh: true,
+          onEnter: () => {
+            gsap.set(['.film-beat-1', '.film-beat-2', '.film-beat-3', '.film-outro-overlay'], {
+              visibility: 'visible',
+            })
+          },
+          onEnterBack: () => {
+            gsap.set(['.film-beat-1', '.film-beat-2', '.film-beat-3', '.film-outro-overlay'], {
+              visibility: 'visible',
+            })
+          },
           onLeave: () => {
             // When leaving Film section downwards into the rest of the page,
-            // freeze video completely so 0 CPU/GPU decoding cycles are consumed!
+            // immediately freeze video and hide all beat cards so nothing flashes over the page
             if (video) {
               video.pause()
             }
+            gsap.set(
+              ['.film-beat-1', '.film-beat-2', '.film-beat-3', '.film-outro-overlay', '.film-header-overlay'],
+              { opacity: 0, visibility: 'hidden' }
+            )
           },
           onLeaveBack: () => {
-            // When leaving Film section upwards into Hero, reset to 0 and show poster
+            // When leaving Film section upwards into Hero, reset to 0, show poster, and clean cards
             if (video && video.currentTime !== 0) {
               video.currentTime = 0
             }
@@ -138,11 +154,26 @@ export const FilmSection: React.FC = () => {
               poster.style.opacity = '1'
               poster.style.visibility = 'visible'
             }
+            gsap.set(['.film-beat-1', '.film-beat-2', '.film-beat-3', '.film-outro-overlay'], {
+              opacity: 0,
+              visibility: 'hidden',
+            })
+            gsap.set('.film-header-overlay', {
+              opacity: 1,
+              visibility: 'visible',
+              y: 0,
+            })
           },
           onUpdate: (self) => {
             // PERFORMANCE: When the user has scrolled past this section into the rest of the page,
             // DO NOT SEEK! This eliminates video decoder thrashing while browsing the rest of the site.
             if (!self.isActive) return
+
+            const velocity = Math.abs(self.getVelocity())
+            // If user is flicking or rapidly skipping, suppress transient cards to prevent visual clutter
+            if (velocity > 2200) {
+              gsap.set(['.film-beat-1', '.film-beat-2', '.film-beat-3'], { opacity: 0 })
+            }
 
             const progress = self.progress
 
@@ -245,12 +276,17 @@ export const FilmSection: React.FC = () => {
         0.82
       )
 
-      // Timeline Animation 6: Outro Resolution (0.84 to 1.00)
+      // Timeline Animation 6: Outro Resolution (0.84 to 0.95, then dissolves smoothly before pin ends)
       tl.fromTo(
         '.film-outro-overlay',
         { opacity: 0, y: 24 },
-        { opacity: 1, y: 0, duration: 0.08, ease: 'power1.out' },
+        { opacity: 1, y: 0, duration: 0.07, ease: 'power1.out' },
         0.84
+      )
+      tl.to(
+        '.film-outro-overlay',
+        { opacity: 0, y: -16, duration: 0.04, ease: 'power1.in' },
+        0.95
       )
     }, section)
 
@@ -316,7 +352,7 @@ export const FilmSection: React.FC = () => {
     <section
       id="film"
       ref={sectionRef}
-      className="relative w-full bg-[#0A0D14] text-white"
+      className="relative z-10 w-full bg-[#0A0D14] text-white overflow-hidden"
     >
       {/* Fullscreen Pinned Viewport Stage */}
       <div

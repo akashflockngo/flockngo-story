@@ -44,7 +44,7 @@ export const CommunitySection: React.FC = () => {
     <section
       ref={containerRef}
       id="community"
-      className="relative py-16 sm:py-24 lg:py-36 bg-[#FFFCF8] text-[#111111] overflow-hidden border-t border-[#F3E5D8]"
+      className="relative z-20 py-16 sm:py-24 lg:py-36 bg-[#FFFCF8] text-[#111111] overflow-hidden border-t border-[#F3E5D8]"
     >
       {/* Ambient Glassmorphism Backdrop Glow Orbs */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none select-none">
