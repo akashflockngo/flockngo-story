@@ -19,20 +19,26 @@ export const App: React.FC = () => {
     // 1. Kick off prioritized film sequence loader in background
     initFilmFrameLoader()
 
-    // 2. Preload critical above-the-fold brand images
+    // 2. Preload critical above-the-fold and near-fold brand images immediately
     preloadImage(BRAND_CONFIG.assets.heroBrand)
     preloadImage(BRAND_CONFIG.assets.logo)
+    preloadImage(BRAND_CONFIG.assets.community)
+    preloadImage(BRAND_CONFIG.assets.activityCreation)
 
-    // 3. Stagger preload near-fold section images on idle
-    const idlePreload = () => {
-      preloadImage(BRAND_CONFIG.assets.community)
-      preloadImage(BRAND_CONFIG.assets.activityCreation)
+    // 3. Stagger remaining section assets so user never experiences blank cards
+    const preloadRest = () => {
+      preloadImage(BRAND_CONFIG.assets.activityParticipation)
+      preloadImage(BRAND_CONFIG.assets.whatsappInvitation)
+      preloadImage(BRAND_CONFIG.assets.registrationPayment)
+      preloadImage(BRAND_CONFIG.assets.pollsAnnouncements)
+      preloadImage(BRAND_CONFIG.assets.communityMemories)
+      preloadImage(BRAND_CONFIG.assets.closingBrand)
     }
 
     if ('requestIdleCallback' in window) {
-      window.requestIdleCallback(idlePreload)
+      window.requestIdleCallback(preloadRest)
     } else {
-      setTimeout(idlePreload, 200)
+      setTimeout(preloadRest, 200)
     }
 
     // Initial layout calculation after child components mount

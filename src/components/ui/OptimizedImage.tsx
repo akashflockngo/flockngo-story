@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { useAssetStore } from '../../store/useAssetStore'
 import { preloadImage } from '../../services/queryClient'
 
@@ -21,8 +21,29 @@ export const OptimizedImage: React.FC<OptimizedImageProps> = ({
 }) => {
   const isLoadedInStore = useAssetStore((state) => state.loadedUrls.has(src))
   const markAssetLoaded = useAssetStore((state) => state.markAssetLoaded)
-  const [isLoaded, setIsLoaded] = useState<boolean>(isLoadedInStore)
+  const [isLoaded, setIsLoaded] = useState<boolean>(() => {
+    if (typeof window !== 'undefined') {
+      return useAssetStore.getState().isAssetLoaded(src)
+    }
+    return false
+  })
   const [currentSrc, setCurrentSrc] = useState<string>(src)
+  const imgRef = useRef<HTMLImageElement | null>(null)
+
+  // Synchronize immediately if Zustand store gets marked loaded
+  useEffect(() => {
+    if (isLoadedInStore) {
+      setIsLoaded(true)
+    }
+  }, [isLoadedInStore])
+
+  // Check if browser already has the image cached and completed in DOM
+  useEffect(() => {
+    if (imgRef.current && imgRef.current.complete && imgRef.current.naturalWidth > 0) {
+      markAssetLoaded(src)
+      setIsLoaded(true)
+    }
+  }, [src, currentSrc, markAssetLoaded])
 
   useEffect(() => {
     if (priority) {
@@ -43,26 +64,29 @@ export const OptimizedImage: React.FC<OptimizedImageProps> = ({
     }
   }
 
+  const shouldBeVisible = isLoaded || priority
+
   return (
     <div className={`relative overflow-hidden ${containerClassName}`}>
       {/* Subtle shimmer skeleton displayed only while first fetching */}
-      {!isLoaded && (
+      {!shouldBeVisible && (
         <div
-          className="absolute inset-0 bg-white/[0.04] animate-pulse backdrop-blur-sm z-0 pointer-events-none"
+          className="absolute inset-0 bg-neutral-200/50 dark:bg-white/[0.05] animate-pulse backdrop-blur-sm z-0 pointer-events-none"
           aria-hidden="true"
         />
       )}
 
       <img
+        ref={imgRef}
         src={currentSrc}
         alt={alt}
         loading={priority ? 'eager' : 'lazy'}
-        decoding="async"
+        decoding={priority ? 'sync' : 'async'}
         fetchPriority={priority ? 'high' : 'auto'}
         onLoad={handleLoad}
         onError={handleError}
-        className={`transition-opacity duration-500 ${
-          !isLoaded ? 'opacity-0' : ''
+        className={`transition-opacity duration-300 ${
+          !shouldBeVisible ? 'opacity-0' : 'opacity-100'
         } ${className}`}
         {...rest}
       />

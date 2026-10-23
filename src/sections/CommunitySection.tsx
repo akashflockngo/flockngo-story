@@ -155,6 +155,7 @@ export const CommunitySection: React.FC = () => {
                   <OptimizedImage
                     src={BRAND_CONFIG.assets.community}
                     alt="Authentic FlocknGo community members planning an outdoor trek together"
+                    priority={true}
                     containerClassName="w-full h-full"
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
