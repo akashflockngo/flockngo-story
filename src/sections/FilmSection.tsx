@@ -57,6 +57,7 @@ export const FilmSection: React.FC = () => {
     : BRAND_CONFIG.assets.videoPoster
 
   // GSAP ScrollTrigger Stage Pinning with Scroll-Controlled Video Scrubbing & Poster Choreography
+  // GSAP ScrollTrigger Stage Pinning with Scroll-Controlled Video Scrubbing & Poster Choreography
   useEffect(() => {
     if (prefersReducedMotion) return
     const section = sectionRef.current
@@ -67,30 +68,63 @@ export const FilmSection: React.FC = () => {
     // Ensure video is initially paused so scrolling up & down exclusively controls the playhead
     video.pause()
 
-    // Seek throttle lock to prevent decoder congestion during rapid scrolling
+    // Smooth virtual playhead animated by GSAP Timeline in lockstep with scrub
+    const playhead = { time: 0 }
+    let lastRenderedTime = -1
     let isSeeking = false
-    let pendingTargetTime: number | null = null
+    let seekTimeout: ReturnType<typeof setTimeout> | null = null
+    let stInstance: ScrollTrigger | null = null
 
-    const handleSeeked = () => {
-      isSeeking = false
-      if (pendingTargetTime !== null) {
-        const next = pendingTargetTime
-        pendingTargetTime = null
-        isSeeking = true
-        video.currentTime = next
-      }
-    }
+    // Video seeker using hardware-accelerated fastSeek where available
+    const performSeek = (target: number) => {
+      isSeeking = true
+      lastRenderedTime = target
 
-    video.addEventListener('seeked', handleSeeked)
-
-    const seekTo = (time: number) => {
-      if (isSeeking) {
-        pendingTargetTime = time
+      if (typeof video.fastSeek === 'function') {
+        try {
+          video.fastSeek(target)
+        } catch {
+          video.currentTime = target
+        }
       } else {
-        isSeeking = true
-        video.currentTime = time
+        video.currentTime = target
+      }
+
+      // Safeguard: auto-release lock if browser drops the seeked event
+      if (seekTimeout) clearTimeout(seekTimeout)
+      seekTimeout = setTimeout(() => {
+        isSeeking = false
+      }, 75)
+    }
+
+    const onSeeked = () => {
+      isSeeking = false
+      if (seekTimeout) {
+        clearTimeout(seekTimeout)
+        seekTimeout = null
       }
     }
+
+    video.addEventListener('seeked', onSeeked)
+
+    // Ticker Loop synchronized with display refresh rate (60Hz / 120Hz ProMotion)
+    const tickerLoop = () => {
+      if (!video || !video.duration || isNaN(video.duration) || video.duration <= 0) return
+      // When stage is not active in viewport, do nothing (0% GPU/CPU overhead)
+      if (!stInstance || !stInstance.isActive) return
+
+      const target = playhead.time
+      const diff = Math.abs(target - lastRenderedTime)
+
+      // Only seek if difference is meaningful (> 25ms, roughly 1 frame)
+      // AND the video hardware decoder is not currently busy
+      if (diff >= 0.025) {
+        if (video.seeking || isSeeking) return
+        performSeek(target)
+      }
+    }
+
+    gsap.ticker.add(tickerLoop)
 
     const handleLoadedMetadata = () => {
       video.pause()
@@ -106,20 +140,18 @@ export const FilmSection: React.FC = () => {
       video.addEventListener('loadedmetadata', handleLoadedMetadata, { once: true })
     }
 
-    let lastSoughtTarget = -1
-
     // Use GSAP Context for component lifecycle cleanup
     const ctx = gsap.context(() => {
-      // Cinematic extended scroll runway (+6200px desktop, +4400px mobile)
+      // Cinematic extended scroll runway (+5800px desktop, +4200px mobile)
       // Provides smooth, unhurried scroll-scrubbing travel for the video playhead so each scene and story beat is crystal clear
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: section,
           start: 'top top',
-          end: () => (window.innerWidth < 768 ? '+=4400' : '+=6200'),
+          end: () => (window.innerWidth < 768 ? '+=4200' : '+=5800'),
           pin: true,
           pinSpacing: true,
-          scrub: 0.15, // Snappy 0.15s scrub eliminates lag backlog and card queueing during rapid scroll
+          scrub: window.innerWidth < 768 ? 0.45 : 0.4, // Silky smooth inertia spring that cushions touch & wheel momentum
           anticipatePin: 1,
           fastScrollEnd: true, // Prevents card animations from playing catch-up when scrolling fast
           preventOverlaps: true, // Prevents conflicting tweens during high-velocity navigation
@@ -150,74 +182,38 @@ export const FilmSection: React.FC = () => {
             if (video && video.currentTime !== 0) {
               video.currentTime = 0
             }
+            playhead.time = 0
+            lastRenderedTime = 0
             if (poster) {
               poster.style.opacity = '1'
               poster.style.visibility = 'visible'
             }
+            gsap.set('.film-poster-overlay', { opacity: 1, visibility: 'visible' })
+            gsap.set('.film-header-overlay', { opacity: 1, visibility: 'visible', y: 0 })
             gsap.set(['.film-beat-1', '.film-beat-2', '.film-beat-3', '.film-outro-overlay'], {
               opacity: 0,
               visibility: 'hidden',
             })
-            gsap.set('.film-header-overlay', {
-              opacity: 1,
-              visibility: 'visible',
-              y: 0,
-            })
-          },
-          onUpdate: (self) => {
-            // PERFORMANCE: When the user has scrolled past this section into the rest of the page,
-            // DO NOT SEEK! This eliminates video decoder thrashing while browsing the rest of the site.
-            if (!self.isActive) return
-
-            const velocity = Math.abs(self.getVelocity())
-            // If user is flicking or rapidly skipping, suppress transient cards to prevent visual clutter
-            if (velocity > 2200) {
-              gsap.set(['.film-beat-1', '.film-beat-2', '.film-beat-3'], { opacity: 0 })
-            }
-
-            const progress = self.progress
-
-            // 1. Film Poster Banner Choreography:
-            if (poster) {
-              if (progress <= 0.04) {
-                poster.style.opacity = '1'
-                poster.style.visibility = 'visible'
-              } else if (progress >= 0.12) {
-                poster.style.opacity = '0'
-                poster.style.visibility = 'hidden'
-              } else {
-                const fadeFactor = (progress - 0.04) / 0.08
-                poster.style.opacity = String(Math.max(0, Math.min(1, 1 - fadeFactor)))
-                poster.style.visibility = 'visible'
-              }
-            }
-
-            // 2. Video Scrubbing Choreography:
-            if (video && video.duration && !isNaN(video.duration) && video.duration > 0) {
-              if (progress <= 0.04) {
-                if (lastSoughtTarget !== 0) {
-                  lastSoughtTarget = 0
-                  seekTo(0)
-                }
-              } else {
-                // Linear, unhurried, proportional scrub across the entire runway:
-                // Full video completes steadily at progress = 0.96, and holds final culmination until 1.00!
-                const videoProgress = Math.max(0, Math.min(1, (progress - 0.04) / 0.92))
-                const maxTime = Math.max(0, video.duration - 0.02)
-                const targetTime = videoProgress * maxTime
-                // Seek if target time changed by > 0.03s or when reaching the very end
-                if (
-                  Math.abs(targetTime - lastSoughtTarget) > 0.03 ||
-                  (videoProgress >= 0.99 && lastSoughtTarget < maxTime)
-                ) {
-                  lastSoughtTarget = targetTime
-                  seekTo(targetTime)
-                }
-              }
-            }
           },
         },
       })
+
+      stInstance = tl.scrollTrigger || null
+
+      // Smooth Video Scrub tween on the timeline:
+      // Advances playhead.time from 0 to (duration - 0.02) between timeline progress 0.04 and 0.96
+      tl.to(
+        playhead,
+        {
+          time: () =>
+            video && video.duration && !isNaN(video.duration)
+              ? Math.max(0, video.duration - 0.02)
+              : 20,
+          ease: 'none',
+          duration: 0.92,
+        },
+        0.04
+      )
 
       // Timeline Animation 1: Poster Banner Fades Out (0.04 to 0.12)
       tl.to(
@@ -226,6 +222,12 @@ export const FilmSection: React.FC = () => {
           opacity: 0,
           duration: 0.08,
           ease: 'power1.out',
+          onComplete: () => {
+            gsap.set('.film-poster-overlay', { visibility: 'hidden' })
+          },
+          onReverseComplete: () => {
+            gsap.set('.film-poster-overlay', { visibility: 'visible' })
+          },
         },
         0.04
       )
@@ -298,7 +300,9 @@ export const FilmSection: React.FC = () => {
     ScrollTrigger.refresh()
 
     return () => {
-      video.removeEventListener('seeked', handleSeeked)
+      video.removeEventListener('seeked', onSeeked)
+      gsap.ticker.remove(tickerLoop)
+      if (seekTimeout) clearTimeout(seekTimeout)
       ctx.revert()
     }
   }, [prefersReducedMotion, isDesktop])
@@ -335,18 +339,7 @@ export const FilmSection: React.FC = () => {
                   : 'FlocknGo mobile brand film'
               }
               className="w-full h-auto object-cover"
-            >
-              <source
-                media="(min-width: 768px)"
-                src={BRAND_CONFIG.assets.video}
-                type="video/mp4"
-              />
-              <source
-                media="(max-width: 767px)"
-                src={BRAND_CONFIG.assets.videoMobile}
-                type="video/mp4"
-              />
-            </video>
+            />
           </div>
         </div>
       </section>
@@ -392,24 +385,16 @@ export const FilmSection: React.FC = () => {
           preload="auto"
           muted
           playsInline
+          disablePictureInPicture
+          disableRemotePlayback
           aria-label={
             isDesktop
               ? 'FlocknGo desktop brand film'
               : 'FlocknGo mobile brand film'
           }
           className="absolute inset-0 w-full h-full object-cover z-10 pointer-events-none select-none"
-        >
-          <source
-            media="(min-width: 768px)"
-            src={BRAND_CONFIG.assets.video}
-            type="video/mp4"
-          />
-          <source
-            media="(max-width: 767px)"
-            src={BRAND_CONFIG.assets.videoMobile}
-            type="video/mp4"
-          />
-        </video>
+          style={{ willChange: 'transform', transform: 'translateZ(0)' }}
+        />
 
         {/* 
           Cinematic Film Poster Banner Overlay (z-15):
