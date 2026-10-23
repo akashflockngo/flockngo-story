@@ -44,10 +44,10 @@ export const CommunitySection: React.FC = () => {
     <section
       ref={containerRef}
       id="community"
-      className="relative py-28 sm:py-36 bg-[#FFFCF8] text-[#111111] overflow-hidden border-t border-[#F3E5D8]"
+      className="relative py-16 sm:py-24 lg:py-36 bg-[#FFFCF8] text-[#111111] overflow-hidden border-t border-[#F3E5D8]"
     >
       <div className="container-cinematic relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 lg:gap-16 items-center">
           
           {/* Left Column: Editorial Narrative & How-It-Works Breakdown */}
           <div className="lg:col-span-5 space-y-6">
@@ -94,7 +94,7 @@ export const CommunitySection: React.FC = () => {
             </div>
 
             {/* Community Health Signals */}
-            <div className="comm-text-reveal pt-2 flex items-center gap-6 text-xs text-[#6B7280] border-t border-[#F3E5D8]">
+            <div className="comm-text-reveal pt-2 flex items-center gap-4 sm:gap-6 flex-wrap sm:flex-nowrap text-xs text-[#6B7280] border-t border-[#F3E5D8]">
               <div className="flex items-center gap-2">
                 <Users className="w-4 h-4 text-[#F47721]" />
                 <div>
@@ -116,24 +116,24 @@ export const CommunitySection: React.FC = () => {
 
           {/* Right Column: Dominant Editorial Graphical Demonstration */}
           <div className="lg:col-span-7">
-            <div className="comm-graphic-stage relative mx-auto max-w-xl rounded-3xl bg-white border border-[#F3E5D8] p-6 sm:p-7 shadow-[0_16px_50px_rgba(0,0,0,0.06)] space-y-6">
+            <div className="comm-graphic-stage relative mx-auto max-w-xl rounded-2xl sm:rounded-3xl bg-white border border-[#F3E5D8] p-4 sm:p-6 lg:p-7 shadow-[0_16px_50px_rgba(0,0,0,0.06)] space-y-6">
               
               {/* Top Banner: Authentic Community Profile Card */}
               <div className="flex items-center justify-between pb-6 border-b border-[#F3E5D8]">
-                <div className="flex items-center gap-3.5">
-                  <div className="w-14 h-14 rounded-2xl bg-[#FFF0E6] border border-[#F47721]/30 flex items-center justify-center text-[#F47721] font-extrabold text-xl shadow-2xs">
+                <div className="flex items-center gap-3 sm:gap-3.5 min-w-0">
+                  <div className="w-11 h-11 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl bg-[#FFF0E6] border border-[#F47721]/30 flex items-center justify-center text-[#F47721] font-extrabold text-lg sm:text-xl shrink-0 shadow-2xs">
                     ST
                   </div>
-                  <div>
+                  <div className="min-w-0">
                     <div className="flex items-center gap-2">
-                      <h3 className="text-lg font-bold text-[#111111]">Sahyadri Trekkers</h3>
-                      <ShieldCheck className="w-4 h-4 text-[#10B981]" />
+                      <h3 className="text-base sm:text-lg font-bold text-[#111111] truncate">Sahyadri Trekkers</h3>
+                      <ShieldCheck className="w-4 h-4 text-[#10B981] shrink-0" />
                     </div>
-                    <p className="text-xs text-[#6B7280]">Outdoor Adventure & Trekking • Pune & Western Ghats</p>
+                    <p className="text-xs text-[#6B7280] line-clamp-1 sm:line-clamp-none">Outdoor Adventure & Trekking • Pune & Western Ghats</p>
                   </div>
                 </div>
 
-                <div className="hidden sm:flex items-center gap-2">
+                <div className="hidden sm:flex items-center gap-2 shrink-0">
                   <span className="px-3 py-1 rounded-full bg-[#FFF0E6] text-[#F47721] font-mono text-xs font-bold">
                     142 Members
                   </span>
@@ -196,8 +196,8 @@ export const CommunitySection: React.FC = () => {
                   <span>PUBLIC COMMUNITY HUB LINK</span>
                   <span className="text-[#10B981] font-semibold text-[11px]">NO APP REQUIRED</span>
                 </div>
-                <div className="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 border border-slate-200">
-                  <span className="text-xs font-mono text-slate-600 truncate pr-2">
+                <div className="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 border border-slate-200 min-w-0 gap-2">
+                  <span className="text-xs font-mono text-slate-600 truncate min-w-0">
                     flockngo.com/flock/sahyadri-trekkers
                   </span>
                   <button
@@ -221,7 +221,7 @@ export const CommunitySection: React.FC = () => {
               </div>
 
               {/* Bottom Feature Metadata Footer */}
-              <div className="pt-3 border-t border-[#F3E5D8] flex items-center justify-between text-xs text-[#6B7280]">
+              <div className="pt-3 border-t border-[#F3E5D8] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-1 sm:gap-0 text-xs text-[#6B7280]">
                 <span>A permanent, dedicated home for your community</span>
                 <span className="font-bold text-[#E74728] font-mono">01 / COMMUNITY</span>
               </div>

@@ -36,10 +36,10 @@ export const ActivitySection: React.FC = () => {
     <section
       ref={containerRef}
       id="activities"
-      className="relative py-28 sm:py-36 bg-[#0A0D14] text-white overflow-hidden border-t border-white/[0.08]"
+      className="relative py-16 sm:py-24 lg:py-36 bg-[#0A0D14] text-white overflow-hidden border-t border-white/[0.08]"
     >
       <div className="container-cinematic relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 lg:gap-16 items-center">
 
           {/* Left Column: Editorial Narrative */}
           <div className="lg:col-span-5 space-y-6">
@@ -85,7 +85,7 @@ export const ActivitySection: React.FC = () => {
               <div className="grid grid-cols-1 sm:grid-cols-12 gap-5 items-center">
 
                 {/* Visual A: Actual Activity Planning & Device in Organizer Hands */}
-                <div className="sm:col-span-6 rounded-3xl overflow-hidden bg-slate-900 border border-white/10 p-3 shadow-2xl">
+                <div className="sm:col-span-6 w-full lg:max-w-[280px] sm:max-w-none mx-auto rounded-3xl overflow-hidden bg-slate-900 border border-white/10 p-3 shadow-2xl">
                   <div className="flex items-center justify-between text-[11px] font-mono text-slate-400 px-1 pb-2">
                     <span className="text-[#F47721] font-bold">ORGANISER PLANNING</span>
                     <span>FLOCKNGO APP</span>
@@ -155,12 +155,12 @@ export const ActivitySection: React.FC = () => {
                       </div>
 
                       {/* Action Bar */}
-                      <div className="pt-3 border-t border-white/[0.08] flex items-center justify-between">
+                      <div className="pt-3 border-t border-white/[0.08] flex items-center justify-between gap-2">
                         <div className="flex items-center gap-1.5 text-xs font-semibold text-[#10B981]">
-                          <CheckCircle2 className="w-4 h-4" />
+                          <CheckCircle2 className="w-4 h-4 shrink-0" />
                           <span>RSVP Open</span>
                         </div>
-                        <span className="text-xs font-bold text-[#F47721]">Instant Share Link →</span>
+                        <span className="text-xs font-bold text-[#F47721] shrink-0">Instant Share Link →</span>
                       </div>
                     </div>
                   </div>
