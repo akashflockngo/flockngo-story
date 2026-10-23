@@ -206,7 +206,7 @@ export const Header: React.FC = () => {
             <a
               href={BRAND_CONFIG.primaryCtaUrl}
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               className="btn-cinematic-primary px-5 py-2.5 text-xs font-semibold"
             >
               <span>Explore Platform</span>
@@ -269,7 +269,7 @@ export const Header: React.FC = () => {
                 <a
                   href={BRAND_CONFIG.primaryCtaUrl}
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
                   className="btn-cinematic-primary w-full justify-center py-3 text-sm font-semibold shadow-lg shadow-[#F47721]/20"
                 >
                   <span>Explore Platform</span>

@@ -75,7 +75,7 @@ export const FinalBrandSection: React.FC = () => {
             <a
               href={BRAND_CONFIG.primaryCtaUrl}
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               className="btn-cinematic-primary w-full sm:w-auto px-6 sm:px-9 py-3.5 sm:py-4 text-sm sm:text-base font-semibold shadow-lg shadow-[#F47721]/20 hover:shadow-xl hover:shadow-[#F47721]/30 justify-center"
             >
               <span>Explore FlocknGo</span>
@@ -85,7 +85,7 @@ export const FinalBrandSection: React.FC = () => {
             <a
               href={BRAND_CONFIG.links.whatsappSupport}
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               className="btn-cinematic-secondary btn-cinematic-secondary-dark w-full sm:w-auto px-6 sm:px-7 py-3.5 sm:py-4 text-sm sm:text-base justify-center"
             >
               <MessageSquare className="w-4 h-4 text-[#25D366]" />

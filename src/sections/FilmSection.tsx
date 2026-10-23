@@ -200,11 +200,16 @@ export const FilmSection: React.FC = () => {
                   seekTo(0)
                 }
               } else {
-                const videoProgress = Math.min(1, (progress - 0.04) / 0.81)
-                const maxTime = Math.max(0, video.duration - 0.05)
+                // Linear, unhurried, proportional scrub across the entire runway:
+                // Full video completes steadily at progress = 0.96, and holds final culmination until 1.00!
+                const videoProgress = Math.max(0, Math.min(1, (progress - 0.04) / 0.92))
+                const maxTime = Math.max(0, video.duration - 0.02)
                 const targetTime = videoProgress * maxTime
-                // Only seek if target time changed by > 0.04s, avoiding decoder thrashing at the end of video
-                if (Math.abs(targetTime - lastSoughtTarget) > 0.04) {
+                // Seek if target time changed by > 0.03s or when reaching the very end
+                if (
+                  Math.abs(targetTime - lastSoughtTarget) > 0.03 ||
+                  (videoProgress >= 0.99 && lastSoughtTarget < maxTime)
+                ) {
                   lastSoughtTarget = targetTime
                   seekTo(targetTime)
                 }
@@ -263,7 +268,7 @@ export const FilmSection: React.FC = () => {
         0.60
       )
 
-      // Timeline Animation 5: Story Beat 3 - Community In Real Life (progress 0.64 to 0.82)
+      // Timeline Animation 5: Story Beat 3 - Community In Real Life (progress 0.64 to 0.86)
       tl.fromTo(
         '.film-beat-3',
         { opacity: 0, y: 20 },
@@ -273,20 +278,20 @@ export const FilmSection: React.FC = () => {
       tl.to(
         '.film-beat-3',
         { opacity: 0, y: -16, duration: 0.08, ease: 'power1.in' },
-        0.82
+        0.84
       )
 
-      // Timeline Animation 6: Outro Resolution (0.84 to 0.95, then dissolves smoothly before pin ends)
+      // Timeline Animation 6: Outro Resolution (0.86 to 0.96, dissolves cleanly before pin ends)
       tl.fromTo(
         '.film-outro-overlay',
         { opacity: 0, y: 24 },
         { opacity: 1, y: 0, duration: 0.07, ease: 'power1.out' },
-        0.84
+        0.86
       )
       tl.to(
         '.film-outro-overlay',
         { opacity: 0, y: -16, duration: 0.04, ease: 'power1.in' },
-        0.95
+        0.96
       )
     }, section)
 

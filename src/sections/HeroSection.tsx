@@ -98,7 +98,7 @@ export const HeroSection: React.FC = () => {
             <a
               href={BRAND_CONFIG.primaryCtaUrl}
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               className="hero-animate hero-cta-btn btn-cinematic-secondary btn-cinematic-secondary-dark w-full sm:w-auto px-6 py-3.5 sm:px-7 sm:py-4 text-sm sm:text-base justify-center"
             >
               <span>Explore Platform</span>
