@@ -2,17 +2,25 @@ import React, { useState, useEffect, useRef } from 'react'
 import { BRAND_CONFIG } from '../config/brand'
 import { ArrowUpRight, Menu, X } from 'lucide-react'
 import { gsap } from '../config/gsap'
+import { useBodyScrollLock } from '../hooks/useBodyScrollLock'
 
 export const Header: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false)
+  const [isVisible, setIsVisible] = useState(true)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [activeSection, setActiveSection] = useState<string>('story')
   const headerRef = useRef<HTMLElement | null>(null)
   const isScrolledRef = useRef(false)
+  const isVisibleRef = useRef(true)
+  const lastScrollYRef = useRef(0)
+
+  // Lock background scroll when mobile drawer is open without layout shift
+  useBodyScrollLock(mobileMenuOpen)
 
   useEffect(() => {
     let ticking = false
     const sectionIds = ['story', 'film', 'community', 'activities', 'whatsapp', 'payments', 'engagement']
+    lastScrollYRef.current = window.scrollY || window.pageYOffset || 0
 
     // Accurate geometry-based active section detection that respects pinned sections
     const checkActiveSection = () => {
@@ -34,11 +42,44 @@ export const Header: React.FC = () => {
     const handleScroll = () => {
       if (!ticking) {
         window.requestAnimationFrame(() => {
-          const scrolled = window.scrollY > 30
+          const currentY = window.scrollY || window.pageYOffset || 0
+          const lastY = lastScrollYRef.current
+          const diff = currentY - lastY
+
+          // 1. Scrolled background styling
+          const scrolled = currentY > 30
           if (scrolled !== isScrolledRef.current) {
             isScrolledRef.current = scrolled
             setIsScrolled(scrolled)
           }
+
+          // 2. Hero boundary visibility logic:
+          // Topnav always visible inside hero section.
+          // Past hero section: hides when scrolling down, shows when scrolling up.
+          const heroEl = document.getElementById('story')
+          const heroBottom = heroEl ? heroEl.offsetTop + heroEl.offsetHeight - 80 : 400
+
+          let nextVisible = isVisibleRef.current
+
+          if (mobileMenuOpen) {
+            nextVisible = true
+          } else if (currentY <= heroBottom) {
+            // Within Hero section: always visible
+            nextVisible = true
+          } else if (diff > 8) {
+            // Scrolling down past hero: hide
+            nextVisible = false
+          } else if (diff < -8) {
+            // Scrolling up: show
+            nextVisible = true
+          }
+
+          if (nextVisible !== isVisibleRef.current) {
+            isVisibleRef.current = nextVisible
+            setIsVisible(nextVisible)
+          }
+
+          lastScrollYRef.current = currentY
           checkActiveSection()
           ticking = false
         })
@@ -56,13 +97,24 @@ export const Header: React.FC = () => {
       gsap.fromTo(
         headerRef.current,
         { y: -15, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.6, ease: 'power2.out', delay: 0.1 }
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.6,
+          ease: 'power2.out',
+          delay: 0.1,
+          onComplete: () => {
+            if (headerRef.current) {
+              gsap.set(headerRef.current, { clearProps: 'transform' })
+            }
+          },
+        }
       )
     }
 
     // Keyboard ESC listener for accessible mobile menu
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
+      if (e.key === 'Escape' && mobileMenuOpen) {
         setMobileMenuOpen(false)
       }
     }
@@ -73,7 +125,7 @@ export const Header: React.FC = () => {
       window.removeEventListener('resize', checkActiveSection)
       window.removeEventListener('keydown', handleKeyDown)
     }
-  }, [])
+  }, [mobileMenuOpen])
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     if (href.startsWith('#')) {
@@ -81,8 +133,10 @@ export const Header: React.FC = () => {
       const targetElement = document.getElementById(targetId)
       if (targetElement) {
         e.preventDefault()
-        targetElement.scrollIntoView({ behavior: 'smooth' })
         setMobileMenuOpen(false)
+        setIsVisible(true)
+        isVisibleRef.current = true
+        targetElement.scrollIntoView({ behavior: 'smooth' })
         window.history.pushState(null, '', href)
       }
     }
@@ -91,10 +145,13 @@ export const Header: React.FC = () => {
   return (
     <header
       ref={headerRef}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
-          ? 'bg-[#0A0D14]/90 backdrop-blur-md border-b border-white/[0.08] py-3.5 shadow-xl'
-          : 'bg-transparent py-5'
-        }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out ${
+        isVisible ? 'translate-y-0' : '-translate-y-full pointer-events-none'
+      } ${
+        isScrolled || mobileMenuOpen
+          ? 'bg-[#0A0D14]/95 backdrop-blur-md border-b border-white/[0.08] py-3 sm:py-1 shadow-xl'
+          : 'bg-transparent py-4 sm:py-1'
+      }`}
     >
       <div className="container-cinematic">
         <div className="flex items-center justify-between">
@@ -112,7 +169,7 @@ export const Header: React.FC = () => {
               height={38}
               fetchPriority="high"
               decoding="async"
-              className="h-8 sm:h-9 w-auto object-contain transition-transform duration-200 group-hover:opacity-90"
+              className="h-12 sm:h-20 w-auto object-contain transition-transform duration-200 group-hover:opacity-90"
             />
           </a>
 
@@ -162,9 +219,10 @@ export const Header: React.FC = () => {
             <button
               type="button"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-lg text-slate-300 hover:text-white hover:bg-white/[0.08] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#F47721]"
+              className="p-2 -mr-1.5 rounded-lg text-slate-300 hover:text-white hover:bg-white/[0.08] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#F47721] touch-manipulation"
               aria-label={mobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
               aria-expanded={mobileMenuOpen}
+              aria-controls="mobile-navigation-drawer"
             >
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
@@ -172,38 +230,55 @@ export const Header: React.FC = () => {
         </div>
       </div>
 
-      {/* Accessible Mobile Drawer */}
+      {/* Accessible Mobile Drawer & Backdrop */}
       {mobileMenuOpen && (
-        <div className="md:hidden fixed inset-x-0 top-[62px] bg-[#0A0D14]/98 border-b border-white/[0.08] px-6 py-8 backdrop-blur-xl transition-all shadow-2xl">
-          <div className="flex flex-col space-y-5">
-            {BRAND_CONFIG.navigation.map((item) => {
-              const isActive = activeSection === item.href.replace('#', '')
-              return (
+        <>
+          {/* Backdrop overlay */}
+          <div
+            className="md:hidden fixed inset-0 z-40 bg-black/70 backdrop-blur-sm transition-opacity"
+            onClick={() => setMobileMenuOpen(false)}
+            aria-hidden="true"
+          />
+
+          {/* Drawer Container */}
+          <div
+            id="mobile-navigation-drawer"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Mobile Navigation Drawer"
+            className="md:hidden fixed inset-x-0 top-[56px] sm:top-[62px] z-50 max-h-[calc(100dvh-56px)] sm:max-h-[calc(100dvh-62px)] overflow-y-auto overscroll-contain bg-[#0A0D14]/98 border-b border-white/[0.08] px-5 py-6 pb-8 backdrop-blur-2xl shadow-2xl transition-all"
+          >
+            <div className="flex flex-col space-y-3.5">
+              {BRAND_CONFIG.navigation.map((item) => {
+                const isActive = activeSection === item.href.replace('#', '')
+                return (
+                  <a
+                    key={item.id}
+                    href={item.href}
+                    onClick={(e) => handleNavClick(e, item.href)}
+                    className={`text-base font-semibold py-2.5 px-2 rounded-lg transition-colors flex items-center justify-between border-b border-white/[0.04] ${isActive ? 'text-[#F47721] bg-white/[0.04]' : 'text-slate-200 hover:text-white'
+                      }`}
+                    aria-current={isActive ? 'page' : undefined}
+                  >
+                    <span>{item.label}</span>
+                    {isActive && <span className="w-1.5 h-1.5 rounded-full bg-[#F47721]" />}
+                  </a>
+                )
+              })}
+              <div className="pt-3">
                 <a
-                  key={item.id}
-                  href={item.href}
-                  onClick={(e) => handleNavClick(e, item.href)}
-                  className={`text-lg font-semibold py-2 transition-colors ${isActive ? 'text-[#F47721]' : 'text-slate-300 hover:text-white'
-                    }`}
-                  aria-current={isActive ? 'page' : undefined}
+                  href={BRAND_CONFIG.primaryCtaUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="btn-cinematic-primary w-full justify-center py-3 text-sm font-semibold shadow-lg shadow-[#F47721]/20"
                 >
-                  {item.label}
+                  <span>Explore Platform</span>
+                  <ArrowUpRight className="w-4 h-4" />
                 </a>
-              )
-            })}
-            <div className="pt-4 border-t border-white/[0.08]">
-              <a
-                href={BRAND_CONFIG.primaryCtaUrl}
-                target="_blank"
-                rel="noreferrer"
-                className="btn-cinematic-primary w-full justify-center py-3 text-sm font-semibold"
-              >
-                <span>Explore Platform</span>
-                <ArrowUpRight className="w-4 h-4" />
-              </a>
+              </div>
             </div>
           </div>
-        </div>
+        </>
       )}
     </header>
   )
