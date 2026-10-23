@@ -38,6 +38,13 @@ export const ActivitySection: React.FC = () => {
       id="activities"
       className="relative py-16 sm:py-24 lg:py-36 bg-[#0A0D14] text-white overflow-hidden border-t border-white/[0.08]"
     >
+      {/* Ambient Glassmorphism Backdrop Glow Orbs */}
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none select-none">
+        <div className="absolute top-1/3 right-1/4 w-[520px] h-[520px] bg-gradient-to-br from-[#F47721]/30 via-[#FF8C38]/18 to-transparent rounded-full blur-[85px]" />
+        <div className="absolute bottom-1/4 left-1/4 w-[500px] h-[500px] bg-gradient-to-tr from-indigo-600/25 via-emerald-500/18 to-transparent rounded-full blur-[85px]" />
+        <div className="absolute top-1/2 right-12 w-[350px] h-[350px] bg-amber-500/22 rounded-full blur-[75px]" />
+      </div>
+
       <div className="container-cinematic relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 lg:gap-16 items-center">
 

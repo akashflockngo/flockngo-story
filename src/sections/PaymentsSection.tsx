@@ -38,6 +38,13 @@ export const PaymentsSection: React.FC = () => {
       id="payments"
       className="relative py-16 sm:py-24 lg:py-36 bg-[#0A0D14] text-white overflow-hidden border-t border-white/[0.08]"
     >
+      {/* Ambient Glassmorphism Backdrop Glow Orbs */}
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none select-none">
+        <div className="absolute top-1/3 right-1/4 w-[520px] h-[520px] bg-gradient-to-br from-[#10B981]/28 via-emerald-600/18 to-transparent rounded-full blur-[85px]" />
+        <div className="absolute bottom-12 left-1/4 w-[500px] h-[500px] bg-gradient-to-tr from-[#F47721]/24 via-amber-500/16 to-transparent rounded-full blur-[85px]" />
+        <div className="absolute top-1/2 right-12 w-[350px] h-[350px] bg-emerald-400/18 rounded-full blur-[75px]" />
+      </div>
+
       <div className="container-cinematic relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 lg:gap-16 items-center">
 
