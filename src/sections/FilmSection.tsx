@@ -70,38 +70,48 @@ export const FilmSection: React.FC = () => {
 
     // Smooth virtual playhead animated by GSAP Timeline in lockstep with scrub
     const playhead = { time: 0 }
-    let lastRenderedTime = -1
+    let targetTime = 0
     let isSeeking = false
-    let seekTimeout: ReturnType<typeof setTimeout> | null = null
+    let seekWatchdog: ReturnType<typeof setTimeout> | null = null
     let stInstance: ScrollTrigger | null = null
 
-    // Video seeker using hardware-accelerated fastSeek where available
-    const performSeek = (target: number) => {
+    // Frame-accurate seek dispatcher using the pending-target queue architecture:
+    // Guarantees zero dropped destinations, avoids decoder saturation, and eliminates keyframe snaps
+    const dispatchSeek = () => {
+      if (!video || !video.duration || isNaN(video.duration) || video.duration <= 0) return
+      if (isSeeking) return
+
+      const destination = Math.max(0, Math.min(video.duration - 0.02, targetTime))
+      const diff = Math.abs(video.currentTime - destination)
+
+      // If difference is under ~15ms (less than half a 30fps frame), no need to trigger decoding
+      if (diff < 0.015) return
+
       isSeeking = true
-      lastRenderedTime = target
 
-      if (typeof video.fastSeek === 'function') {
-        try {
-          video.fastSeek(target)
-        } catch {
-          video.currentTime = target
-        }
-      } else {
-        video.currentTime = target
-      }
+      // Frame-accurate seek directly on currentTime (avoids fastSeek keyframe snapping)
+      video.currentTime = destination
 
-      // Safeguard: auto-release lock if browser drops the seeked event
-      if (seekTimeout) clearTimeout(seekTimeout)
-      seekTimeout = setTimeout(() => {
+      // Safety watchdog: if browser fails to emit 'seeked' within 100ms, release lock
+      if (seekWatchdog) clearTimeout(seekWatchdog)
+      seekWatchdog = setTimeout(() => {
         isSeeking = false
-      }, 75)
+        if (Math.abs(video.currentTime - targetTime) >= 0.03) {
+          dispatchSeek()
+        }
+      }, 100)
     }
 
     const onSeeked = () => {
       isSeeking = false
-      if (seekTimeout) {
-        clearTimeout(seekTimeout)
-        seekTimeout = null
+      if (seekWatchdog) {
+        clearTimeout(seekWatchdog)
+        seekWatchdog = null
+      }
+
+      // If scroll continued while hardware decoder was busy, immediately seek to newest target
+      if (Math.abs(video.currentTime - targetTime) >= 0.025) {
+        dispatchSeek()
       }
     }
 
@@ -110,17 +120,13 @@ export const FilmSection: React.FC = () => {
     // Ticker Loop synchronized with display refresh rate (60Hz / 120Hz ProMotion)
     const tickerLoop = () => {
       if (!video || !video.duration || isNaN(video.duration) || video.duration <= 0) return
-      // When stage is not active in viewport, do nothing (0% GPU/CPU overhead)
       if (!stInstance || !stInstance.isActive) return
 
-      const target = playhead.time
-      const diff = Math.abs(target - lastRenderedTime)
+      targetTime = playhead.time
 
-      // Only seek if difference is meaningful (> 25ms, roughly 1 frame)
-      // AND the video hardware decoder is not currently busy
-      if (diff >= 0.025) {
-        if (video.seeking || isSeeking) return
-        performSeek(target)
+      // Dispatch seek if decoder is idle and destination has moved
+      if (!isSeeking && Math.abs(video.currentTime - targetTime) >= 0.02) {
+        dispatchSeek()
       }
     }
 
@@ -142,19 +148,21 @@ export const FilmSection: React.FC = () => {
 
     // Use GSAP Context for component lifecycle cleanup
     const ctx = gsap.context(() => {
-      // Cinematic extended scroll runway (+5800px desktop, +4200px mobile)
-      // Provides smooth, unhurried scroll-scrubbing travel for the video playhead so each scene and story beat is crystal clear
+      // Ergonomic scroll runway (+3800px desktop, +2800px mobile):
+      // Allows natural scroll travel without excessive user fatigue or scroll trapping,
+      // while providing crystal-clear pacing for each narrative scene
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: section,
           start: 'top top',
-          end: () => (window.innerWidth < 768 ? '+=4200' : '+=5800'),
+          end: () => (window.innerWidth < 768 ? '+=2800' : '+=3800'),
           pin: true,
           pinSpacing: true,
-          scrub: window.innerWidth < 768 ? 0.45 : 0.4, // Silky smooth inertia spring that cushions touch & wheel momentum
+          // Tight, responsive scrub factor: eliminates input lag while smoothing wheel ratchets
+          scrub: window.innerWidth < 768 ? 0.16 : 0.12,
           anticipatePin: 1,
-          fastScrollEnd: true, // Prevents card animations from playing catch-up when scrolling fast
-          preventOverlaps: true, // Prevents conflicting tweens during high-velocity navigation
+          fastScrollEnd: true,
+          preventOverlaps: true,
           invalidateOnRefresh: true,
           onEnter: () => {
             gsap.set(['.film-beat-1', '.film-beat-2', '.film-beat-3', '.film-outro-overlay'], {
@@ -183,7 +191,7 @@ export const FilmSection: React.FC = () => {
               video.currentTime = 0
             }
             playhead.time = 0
-            lastRenderedTime = 0
+            targetTime = 0
             if (poster) {
               poster.style.opacity = '1'
               poster.style.visibility = 'visible'
@@ -302,7 +310,7 @@ export const FilmSection: React.FC = () => {
     return () => {
       video.removeEventListener('seeked', onSeeked)
       gsap.ticker.remove(tickerLoop)
-      if (seekTimeout) clearTimeout(seekTimeout)
+      if (seekWatchdog) clearTimeout(seekWatchdog)
       ctx.revert()
     }
   }, [prefersReducedMotion, isDesktop])
