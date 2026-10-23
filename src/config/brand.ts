@@ -71,7 +71,9 @@ export const BRAND_CONFIG = {
   // Asset References
   assets: {
     video: '/media/flockngo-story.mp4',
+    videoMobile: '/media/flockngo-story-mobile.mp4',
     videoPoster: '/images/story/video-poster-cinematic.webp',
+    videoPosterDesktop: '/images/story/video-poster-desktop.webp',
     logo: '/images/flockngo-logo.png',
     logoFallback: '/images/flockngo-logo.png',
     favicon: '/favicon.png',
