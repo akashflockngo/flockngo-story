@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
+import { createPortal } from 'react-dom'
 import { BRAND_CONFIG } from '../config/brand'
-import { ArrowUpRight, Menu, X } from 'lucide-react'
+import { ArrowUpRight, Menu, X, ChevronRight, MessageSquare } from 'lucide-react'
 import { gsap } from '../config/gsap'
 import { useBodyScrollLock } from '../hooks/useBodyScrollLock'
 
@@ -9,6 +10,7 @@ export const Header: React.FC = () => {
   const [isVisible, setIsVisible] = useState(true)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [activeSection, setActiveSection] = useState<string>('story')
+  const isMounted = typeof document !== 'undefined'
   const headerRef = useRef<HTMLElement | null>(null)
   const isScrolledRef = useRef(false)
   const isVisibleRef = useRef(true)
@@ -143,7 +145,8 @@ export const Header: React.FC = () => {
   }
 
   return (
-    <header
+    <>
+      <header
       ref={headerRef}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out ${
         isVisible ? 'translate-y-0' : '-translate-y-full pointer-events-none'
@@ -229,26 +232,62 @@ export const Header: React.FC = () => {
           </div>
         </div>
       </div>
+    </header>
 
-      {/* Accessible Mobile Drawer & Backdrop */}
-      {mobileMenuOpen && (
+    {/* Render mobile backdrop overlay and side drawer via Portal to document.body 
+        This isolates the drawer from <header>'s backdrop-filter and transforms,
+        guaranteeing 100% solid opacity and silky smooth 60fps sliding open & close. */}
+    {isMounted &&
+      createPortal(
         <>
-          {/* Backdrop overlay */}
+          {/* Accessible Mobile Backdrop Overlay (Fades In / Fades Out Smoothly) */}
           <div
-            className="md:hidden fixed inset-0 z-40 bg-black/60 backdrop-blur-md transition-opacity"
+            className={`md:hidden fixed inset-0 z-[9998] bg-black/80 backdrop-blur-xs transition-opacity duration-300 ease-out ${
+              mobileMenuOpen
+                ? 'opacity-100 pointer-events-auto'
+                : 'opacity-0 pointer-events-none'
+            }`}
             onClick={() => setMobileMenuOpen(false)}
             aria-hidden="true"
           />
 
-          {/* Drawer Container */}
-          <div
+          {/* Sliding Side Navigation Drawer (100% Solid Opaque Dark - Zero Transparency) */}
+          <aside
             id="mobile-navigation-drawer"
             role="dialog"
             aria-modal="true"
             aria-label="Mobile Navigation Drawer"
-            className="md:hidden fixed inset-x-0 top-[56px] sm:top-[62px] z-50 max-h-[calc(100dvh-56px)] sm:max-h-[calc(100dvh-62px)] overflow-y-auto overscroll-contain bg-[#0A0D14]/90 border-b border-white/[0.12] px-5 py-6 pb-8 backdrop-blur-2xl shadow-[0_24px_60px_rgba(0,0,0,0.65),inset_0_1px_0_rgba(255,255,255,0.12)] transition-all"
+            style={{ backgroundColor: '#070A10' }}
+            className={`md:hidden fixed top-0 right-0 bottom-0 z-[9999] w-[85%] max-w-[340px] h-screen h-[100dvh] flex flex-col justify-between border-l border-white/15 px-6 py-6 shadow-[-28px_0_80px_rgba(0,0,0,0.95)] transition-transform duration-350 ease-[cubic-bezier(0.16,1,0.3,1)] will-change-transform ${
+              mobileMenuOpen
+                ? 'translate-x-0 pointer-events-auto'
+                : 'translate-x-full pointer-events-none'
+            }`}
           >
-            <div className="flex flex-col space-y-3.5">
+            {/* Side Nav Top Header */}
+            <div className="flex items-center justify-between pb-5 border-b border-white/[0.08] relative z-10">
+              <img
+                src={BRAND_CONFIG.assets.logo}
+                alt="FlocknGo"
+                width={120}
+                height={32}
+                className="h-7 w-auto object-contain"
+              />
+              <button
+                type="button"
+                onClick={() => setMobileMenuOpen(false)}
+                className="p-2 rounded-xl text-slate-400 hover:text-white bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.08] transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-[#F47721] active:scale-90"
+                aria-label="Close navigation drawer"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            {/* Side Nav Links (Scrollable if height constrained) */}
+            <div className="flex-1 overflow-y-auto overscroll-contain py-6 space-y-2 relative z-10">
+              <div className="text-[10px] font-bold uppercase tracking-wider text-slate-400 px-3 pb-1">
+                Story Navigation
+              </div>
               {BRAND_CONFIG.navigation.map((item) => {
                 const isActive = activeSection === item.href.replace('#', '')
                 return (
@@ -256,30 +295,58 @@ export const Header: React.FC = () => {
                     key={item.id}
                     href={item.href}
                     onClick={(e) => handleNavClick(e, item.href)}
-                    className={`text-base font-semibold py-2.5 px-3 rounded-xl transition-all flex items-center justify-between border ${isActive ? 'text-[#F47721] bg-white/[0.06] border-white/10 shadow-xs' : 'text-slate-200 hover:text-white hover:bg-white/[0.04] border-transparent'
-                      }`}
+                    className={`group text-base font-semibold py-3 px-3.5 rounded-xl transition-all flex items-center justify-between border ${
+                      isActive
+                        ? 'text-[#F47721] bg-gradient-to-r from-[#F47721]/15 to-transparent border-[#F47721]/30 shadow-xs'
+                        : 'text-slate-300 hover:text-white hover:bg-white/[0.05] border-transparent hover:border-white/[0.06]'
+                    }`}
                     aria-current={isActive ? 'page' : undefined}
                   >
-                    <span>{item.label}</span>
-                    {isActive && <span className="w-1.5 h-1.5 rounded-full bg-[#F47721]" />}
+                    <span className="group-hover:translate-x-1 transition-transform duration-200">
+                      {item.label}
+                    </span>
+                    {isActive ? (
+                      <span className="w-2 h-2 rounded-full bg-[#F47721] shadow-[0_0_8px_#F47721]" />
+                    ) : (
+                      <ChevronRight className="w-4 h-4 text-slate-500 group-hover:text-slate-300 group-hover:translate-x-0.5 transition-all" />
+                    )}
                   </a>
                 )
               })}
-              <div className="pt-3">
-                <a
-                  href={BRAND_CONFIG.primaryCtaUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-cinematic-primary w-full justify-center py-3 text-sm font-semibold shadow-lg shadow-[#F47721]/20"
-                >
-                  <span>Explore Platform</span>
-                  <ArrowUpRight className="w-4 h-4" />
-                </a>
+            </div>
+
+            {/* Side Nav Bottom Actions */}
+            <div className="pt-4 border-t border-white/[0.08] space-y-3 relative z-10">
+              <a
+                href={BRAND_CONFIG.primaryCtaUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-cinematic-primary w-full justify-center py-3 text-sm font-semibold shadow-lg shadow-[#F47721]/20 active:scale-[0.98] transition-transform"
+              >
+                <span>Explore Platform</span>
+                <ArrowUpRight className="w-4 h-4" />
+              </a>
+
+              <a
+                href={BRAND_CONFIG.links.whatsappSupport}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl text-xs font-medium text-slate-300 hover:text-white bg-white/[0.03] hover:bg-white/[0.06] border border-white/[0.08] transition-colors"
+              >
+                <MessageSquare className="w-3.5 h-3.5 text-[#25D366]" />
+                <span>WhatsApp Concierge</span>
+              </a>
+
+              <div className="text-center pt-1">
+                <span className="text-[10px] text-slate-400 font-mono">
+                  FlocknGo • Experience Together
+                </span>
               </div>
             </div>
-          </div>
-        </>
+          </aside>
+        </>,
+        document.body
       )}
-    </header>
-  )
+  </>
+)
 }
