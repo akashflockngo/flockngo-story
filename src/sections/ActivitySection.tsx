@@ -56,8 +56,8 @@ export const ActivitySection: React.FC = () => {
 
             {/* Structured Breakdown */}
             <div className="act-text-reveal space-y-3 pt-2">
-              <div className="flex items-start gap-3.5 p-4 rounded-2xl bg-white/[0.04] border border-white/[0.08]">
-                <div className="w-8 h-8 rounded-xl bg-[#F47721] text-white flex items-center justify-center font-mono font-bold text-xs shrink-0 mt-0.5">
+              <div className="flex items-start gap-3.5 p-4 rounded-2xl glass-card-dark">
+                <div className="w-8 h-8 rounded-xl bg-[#F47721] text-white flex items-center justify-center font-mono font-bold text-xs shrink-0 mt-0.5 shadow-xs">
                   1
                 </div>
                 <div className="text-xs space-y-0.5">
@@ -66,8 +66,8 @@ export const ActivitySection: React.FC = () => {
                 </div>
               </div>
 
-              <div className="flex items-start gap-3.5 p-4 rounded-2xl bg-white/[0.04] border border-white/[0.08]">
-                <div className="w-8 h-8 rounded-xl bg-[#F47721] text-white flex items-center justify-center font-mono font-bold text-xs shrink-0 mt-0.5">
+              <div className="flex items-start gap-3.5 p-4 rounded-2xl glass-card-dark">
+                <div className="w-8 h-8 rounded-xl bg-[#F47721] text-white flex items-center justify-center font-mono font-bold text-xs shrink-0 mt-0.5 shadow-xs">
                   2
                 </div>
                 <div className="text-xs space-y-0.5">
@@ -85,12 +85,12 @@ export const ActivitySection: React.FC = () => {
               <div className="grid grid-cols-1 sm:grid-cols-12 gap-5 items-center">
 
                 {/* Visual A: Actual Activity Planning & Device in Organizer Hands */}
-                <div className="sm:col-span-6 w-full lg:max-w-[280px] sm:max-w-none mx-auto rounded-3xl overflow-hidden bg-slate-900 border border-white/10 p-3 shadow-2xl">
+                <div className="sm:col-span-6 w-full lg:max-w-[280px] sm:max-w-none mx-auto rounded-3xl overflow-hidden glass-surface-dark p-3 shadow-2xl">
                   <div className="flex items-center justify-between text-[11px] font-mono text-slate-400 px-1 pb-2">
                     <span className="text-[#F47721] font-bold">ORGANISER PLANNING</span>
                     <span>FLOCKNGO APP</span>
                   </div>
-                  <div className="w-full aspect-[9/16] rounded-2xl overflow-hidden bg-slate-950 relative group">
+                  <div className="w-full aspect-[9/16] rounded-2xl overflow-hidden bg-slate-950 relative group border border-white/5">
                     <OptimizedImage
                       src={BRAND_CONFIG.assets.activityCreation}
                       alt="Organizer hand planning an activity on modern smartphone screen with trail map"
@@ -98,7 +98,7 @@ export const ActivitySection: React.FC = () => {
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-3 pointer-events-none">
-                      <span className="text-[10px] font-mono font-bold text-white/90 bg-black/60 px-2 py-0.5 rounded border border-white/10">
+                      <span className="text-[10px] font-mono font-bold text-white/90 glass-pill-dark px-2 py-0.5 rounded border border-white/10">
                         CURATING EXPERIENCE
                       </span>
                     </div>
@@ -112,7 +112,7 @@ export const ActivitySection: React.FC = () => {
                     <ArrowRight className="w-3.5 h-3.5" />
                   </div>
 
-                  <div className="rounded-2xl bg-white/[0.05] border border-white/10 shadow-2xl overflow-hidden backdrop-blur-sm relative">
+                  <div className="rounded-2xl glass-surface-dark shadow-2xl overflow-hidden relative">
                     {/* Activity Participation Banner: Sunrise Trek to Rajgad Fort */}
                     <div className="w-full h-32 relative overflow-hidden">
                       <OptimizedImage
@@ -123,7 +123,7 @@ export const ActivitySection: React.FC = () => {
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-transparent to-black/30 z-10" />
                       <div className="absolute top-2.5 left-2.5 z-20">
-                        <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-[#F47721] text-white shadow-xs">
+                        <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded-md bg-[#F47721] text-white shadow-xs">
                           TREK & CAMP
                         </span>
                       </div>
@@ -166,7 +166,7 @@ export const ActivitySection: React.FC = () => {
                   </div>
 
                   {/* Micro Annotation */}
-                  <div className="p-3 rounded-xl bg-white/[0.03] border border-white/[0.06] text-[11px] text-slate-400 flex items-center gap-2">
+                  <div className="p-3 rounded-xl glass-pill-dark text-[11px] text-slate-300 flex items-center gap-2">
                     <Clock className="w-4 h-4 text-[#F47721] shrink-0" />
                     <span>Published instantly across member calendars with zero delay.</span>
                   </div>

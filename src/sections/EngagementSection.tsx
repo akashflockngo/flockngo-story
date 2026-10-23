@@ -64,7 +64,7 @@ export const EngagementSection: React.FC = () => {
 
             {/* Strategic Value Items */}
             <div className="eng-text-reveal space-y-3 pt-2">
-              <div className="p-3.5 rounded-xl bg-white border border-[#F3E5D8] flex items-start gap-3 shadow-2xs">
+              <div className="p-4 rounded-2xl glass-card-light flex items-start gap-3">
                 <BarChart2 className="w-5 h-5 text-[#F47721] shrink-0 mt-0.5" />
                 <div className="text-xs">
                   <span className="font-bold text-[#111111] block">Democratic Participant Polls</span>
@@ -72,7 +72,7 @@ export const EngagementSection: React.FC = () => {
                 </div>
               </div>
 
-              <div className="p-3.5 rounded-xl bg-white border border-[#F3E5D8] flex items-start gap-3 shadow-2xs">
+              <div className="p-4 rounded-2xl glass-card-light flex items-start gap-3">
                 <Image className="w-5 h-5 text-[#10B981] shrink-0 mt-0.5" />
                 <div className="text-xs">
                   <span className="font-bold text-[#111111] block">High-Resolution Shared Memory Vault</span>
@@ -84,10 +84,10 @@ export const EngagementSection: React.FC = () => {
 
           {/* Right Column: Editorial Bento Composition (Activity Feed & Media Vault) */}
           <div className="lg:col-span-7">
-            <div className="eng-stage-reveal relative mx-auto max-w-xl rounded-2xl sm:rounded-3xl bg-white border border-[#F3E5D8] p-4 sm:p-6 shadow-[0_16px_50px_rgba(0,0,0,0.06)] space-y-4">
+            <div className="eng-stage-reveal relative mx-auto max-w-xl rounded-2xl sm:rounded-3xl glass-surface-light p-4 sm:p-6 space-y-4">
               
               {/* Header Bar */}
-              <div className="flex items-center justify-between pb-3 border-b border-[#F3E5D8]">
+              <div className="flex items-center justify-between pb-3 border-b border-[#F3E5D8]/80">
                 <div className="flex items-center gap-2">
                   <span className="text-xs font-mono font-bold text-[#F47721] uppercase">Sahyadri Trekkers</span>
                   <span className="text-[#6B7280]">•</span>
@@ -100,7 +100,7 @@ export const EngagementSection: React.FC = () => {
               <div className="grid grid-cols-1 sm:grid-cols-12 gap-4">
                 
                 {/* Cell A: Interactive Poll (sm:col-span-7) */}
-                <div className="sm:col-span-7 p-4 rounded-2xl bg-[#FFF9F5] border border-[#F3E5D8] space-y-2.5">
+                <div className="sm:col-span-7 p-4 rounded-2xl glass-card-light space-y-2.5">
                   <div className="flex items-center justify-between text-[11px] font-mono">
                     <span className="font-bold text-[#F47721] flex items-center gap-1">
                       <BarChart2 className="w-3.5 h-3.5" />
@@ -121,10 +121,10 @@ export const EngagementSection: React.FC = () => {
                           key={opt.id}
                           type="button"
                           onClick={() => setSelectedOption(opt.id)}
-                          className={`w-full p-2 rounded-lg border text-left transition-all flex items-center justify-between text-xs ${
+                          className={`w-full p-2.5 rounded-xl border text-left transition-all flex items-center justify-between text-xs cursor-pointer ${
                             isSelected
-                              ? 'bg-white border-[#F47721] shadow-2xs'
-                              : 'bg-white/70 border-[#F3E5D8] hover:border-[#F47721]/40'
+                              ? 'bg-white border-[#F47721] shadow-xs'
+                              : 'glass-pill-light hover:border-[#F47721]/40'
                           }`}
                         >
                           <div className="flex items-center gap-2">
@@ -147,7 +147,7 @@ export const EngagementSection: React.FC = () => {
                 </div>
 
                 {/* Cell B: Pinned Announcement (sm:col-span-5) */}
-                <div className="sm:col-span-5 p-4 rounded-2xl bg-white border border-[#F3E5D8] space-y-2 flex flex-col justify-between">
+                <div className="sm:col-span-5 p-4 rounded-2xl glass-card-light space-y-2 flex flex-col justify-between">
                   <div className="space-y-1.5">
                     <div className="flex items-center gap-1 text-[11px] font-mono text-[#E74728] font-bold">
                       <Bell className="w-3 h-3" />
@@ -164,7 +164,7 @@ export const EngagementSection: React.FC = () => {
                 </div>
 
                 {/* Cell C: Media Vault Screen using authentic high-res community memories (sm:col-span-5) */}
-                <div className="sm:col-span-5 rounded-2xl overflow-hidden bg-black border border-[#F3E5D8] aspect-[4/3] relative group shadow-sm">
+                <div className="sm:col-span-5 rounded-2xl overflow-hidden bg-black border border-[#F3E5D8]/80 aspect-[4/3] relative group shadow-sm">
                   <OptimizedImage
                     src={BRAND_CONFIG.assets.communityMemories}
                     alt="Sahyadri Trekkers community members celebrating at mountain summit during sunset"
@@ -177,7 +177,7 @@ export const EngagementSection: React.FC = () => {
                         <Image className="w-3.5 h-3.5 text-[#F47721]" />
                         48 Photos & 4K Recap
                       </span>
-                      <span className="text-[10px] font-mono text-slate-300 bg-white/10 px-1.5 py-0.5 rounded">
+                      <span className="text-[10px] font-mono text-slate-200 glass-pill-dark px-1.5 py-0.5 rounded">
                         HD VAULT
                       </span>
                     </div>
@@ -185,13 +185,13 @@ export const EngagementSection: React.FC = () => {
                 </div>
 
                 {/* Cell D: Files & Resources (sm:col-span-7) */}
-                <div className="sm:col-span-7 p-4 rounded-2xl bg-white border border-[#F3E5D8] flex flex-col justify-between space-y-2">
+                <div className="sm:col-span-7 p-4 rounded-2xl glass-card-light flex flex-col justify-between space-y-2">
                   <div className="flex items-center justify-between text-xs">
                     <span className="font-mono text-[#6B7280] uppercase text-[10px]">Persistent Documents</span>
                     <span className="font-mono text-[#10B981] text-[10px] font-bold">ACCESSIBLE OFFLINE</span>
                   </div>
                   
-                  <div className="p-2.5 rounded-xl bg-[#FFF9F5] border border-[#F3E5D8] flex items-center justify-between text-xs gap-2 min-w-0">
+                  <div className="p-2.5 rounded-xl glass-pill-light flex items-center justify-between text-xs gap-2 min-w-0">
                     <div className="flex items-center gap-2 min-w-0">
                       <FileText className="w-4 h-4 text-[#F47721] shrink-0" />
                       <div className="min-w-0">
@@ -199,7 +199,7 @@ export const EngagementSection: React.FC = () => {
                         <div className="text-[10px] text-[#6B7280]">Trail GPS map • 1.2 MB</div>
                       </div>
                     </div>
-                    <Download className="w-3.5 h-3.5 text-[#6B7280] hover:text-[#F47721] cursor-pointer shrink-0" />
+                    <Download className="w-3.5 h-3.5 text-[#6B7280] hover:text-[#F47721] cursor-pointer shrink-0 transition-colors" />
                   </div>
 
                   <div className="text-[11px] text-[#6B7280]">

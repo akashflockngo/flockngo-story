@@ -66,8 +66,8 @@ export const CommunitySection: React.FC = () => {
             <div className="comm-text-reveal space-y-3.5 pt-2">
               
               {/* Callout 1: Setup */}
-              <div className="flex items-start gap-3.5 p-4 rounded-2xl bg-white border border-[#F3E5D8] shadow-xs">
-                <div className="w-9 h-9 rounded-xl bg-[#FFF0E6] text-[#F47721] flex items-center justify-center shrink-0 mt-0.5">
+              <div className="flex items-start gap-3.5 p-4 rounded-2xl glass-card-light">
+                <div className="w-9 h-9 rounded-xl bg-[#FFF0E6] text-[#F47721] flex items-center justify-center shrink-0 mt-0.5 shadow-xs">
                   <Plus className="w-4 h-4" />
                 </div>
                 <div className="text-xs space-y-0.5">
@@ -79,8 +79,8 @@ export const CommunitySection: React.FC = () => {
               </div>
 
               {/* Callout 2: Shareability */}
-              <div className="flex items-start gap-3.5 p-4 rounded-2xl bg-white border border-[#F3E5D8] shadow-xs">
-                <div className="w-9 h-9 rounded-xl bg-[#FFF0E6] text-[#F47721] flex items-center justify-center shrink-0 mt-0.5">
+              <div className="flex items-start gap-3.5 p-4 rounded-2xl glass-card-light">
+                <div className="w-9 h-9 rounded-xl bg-[#FFF0E6] text-[#F47721] flex items-center justify-center shrink-0 mt-0.5 shadow-xs">
                   <Share2 className="w-4 h-4" />
                 </div>
                 <div className="text-xs space-y-0.5">
@@ -116,12 +116,12 @@ export const CommunitySection: React.FC = () => {
 
           {/* Right Column: Dominant Editorial Graphical Demonstration */}
           <div className="lg:col-span-7">
-            <div className="comm-graphic-stage relative mx-auto max-w-xl rounded-2xl sm:rounded-3xl bg-white border border-[#F3E5D8] p-4 sm:p-6 lg:p-7 shadow-[0_16px_50px_rgba(0,0,0,0.06)] space-y-6">
+            <div className="comm-graphic-stage relative mx-auto max-w-xl rounded-2xl sm:rounded-3xl glass-surface-light p-4 sm:p-6 lg:p-7 space-y-6">
               
               {/* Top Banner: Authentic Community Profile Card */}
-              <div className="flex items-center justify-between pb-6 border-b border-[#F3E5D8]">
+              <div className="flex items-center justify-between pb-6 border-b border-[#F3E5D8]/80">
                 <div className="flex items-center gap-3 sm:gap-3.5 min-w-0">
-                  <div className="w-11 h-11 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl bg-[#FFF0E6] border border-[#F47721]/30 flex items-center justify-center text-[#F47721] font-extrabold text-lg sm:text-xl shrink-0 shadow-2xs">
+                  <div className="w-11 h-11 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl bg-[#FFF0E6] border border-[#F47721]/30 flex items-center justify-center text-[#F47721] font-extrabold text-lg sm:text-xl shrink-0 shadow-xs">
                     ST
                   </div>
                   <div className="min-w-0">
@@ -134,7 +134,7 @@ export const CommunitySection: React.FC = () => {
                 </div>
 
                 <div className="hidden sm:flex items-center gap-2 shrink-0">
-                  <span className="px-3 py-1 rounded-full bg-[#FFF0E6] text-[#F47721] font-mono text-xs font-bold">
+                  <span className="px-3 py-1 rounded-full glass-pill-light text-[#F47721] font-mono text-xs font-bold border border-[#F47721]/30">
                     142 Members
                   </span>
                 </div>
@@ -151,7 +151,7 @@ export const CommunitySection: React.FC = () => {
                     containerClassName="w-full h-full"
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
-                  <div className="absolute top-2 left-2 px-2 py-0.5 rounded bg-white/95 border border-[#F3E5D8] text-[10px] font-mono text-[#E74728] font-bold shadow-2xs z-10">
+                  <div className="absolute top-2 left-2 px-2 py-0.5 rounded-md glass-pill-light text-[10px] font-mono text-[#E74728] font-bold shadow-xs z-10">
                     COMMUNITY CULTURE
                   </div>
                 </div>
@@ -163,9 +163,9 @@ export const CommunitySection: React.FC = () => {
                   </div>
 
                   {/* Organizer Profile Item */}
-                  <div className="flex items-center justify-between p-3 rounded-xl bg-[#FFF9F5] border border-[#F3E5D8]">
+                  <div className="flex items-center justify-between p-3 rounded-xl glass-card-light">
                     <div className="flex items-center gap-2.5">
-                      <div className="w-8 h-8 rounded-full bg-slate-900 text-white font-bold text-xs flex items-center justify-center">
+                      <div className="w-8 h-8 rounded-full bg-slate-900 text-white font-bold text-xs flex items-center justify-center shadow-xs">
                         AM
                       </div>
                       <div className="text-xs">
@@ -173,13 +173,13 @@ export const CommunitySection: React.FC = () => {
                         <div className="text-[#6B7280]">Founder & Lead Trekker</div>
                       </div>
                     </div>
-                    <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-white text-[#F47721] font-bold border border-[#F3E5D8]">
+                    <span className="text-[10px] font-mono px-2 py-0.5 rounded-md glass-pill-light text-[#F47721] font-bold border border-[#F3E5D8]">
                       ADMIN
                     </span>
                   </div>
 
                   {/* Activity Track Record */}
-                  <div className="p-3 rounded-xl bg-white border border-[#F3E5D8] flex items-center justify-between text-xs">
+                  <div className="p-3 rounded-xl glass-card-light flex items-center justify-between text-xs">
                     <span className="text-[#6B7280] flex items-center gap-1.5">
                       <Users className="w-4 h-4 text-[#F47721]" />
                       Active Community
@@ -196,14 +196,14 @@ export const CommunitySection: React.FC = () => {
                   <span>PUBLIC COMMUNITY HUB LINK</span>
                   <span className="text-[#10B981] font-semibold text-[11px]">NO APP REQUIRED</span>
                 </div>
-                <div className="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 border border-slate-200 min-w-0 gap-2">
-                  <span className="text-xs font-mono text-slate-600 truncate min-w-0">
+                <div className="flex items-center justify-between p-2.5 rounded-xl glass-pill-light min-w-0 gap-2">
+                  <span className="text-xs font-mono text-slate-700 truncate min-w-0 font-medium">
                     flockngo.com/flock/sahyadri-trekkers
                   </span>
                   <button
                     type="button"
                     onClick={handleCopyLink}
-                    className="flex items-center gap-1.5 px-3 py-1 rounded-lg bg-white border border-slate-200 text-xs font-semibold text-[#111111] hover:border-[#F47721] hover:text-[#F47721] transition-colors shrink-0 shadow-2xs"
+                    className="flex items-center gap-1.5 px-3 py-1 rounded-lg bg-white border border-[#F3E5D8] text-xs font-semibold text-[#111111] hover:border-[#F47721] hover:text-[#F47721] transition-all shrink-0 shadow-2xs cursor-pointer"
                   >
                     {copied ? (
                       <>

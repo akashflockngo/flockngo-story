@@ -56,7 +56,7 @@ export const PaymentsSection: React.FC = () => {
 
             {/* Key Benefits */}
             <div className="pay-text-reveal space-y-3 pt-2">
-              <div className="p-3.5 rounded-xl bg-white/[0.04] border border-white/[0.08] flex items-start gap-3">
+              <div className="p-4 rounded-2xl glass-card-dark flex items-start gap-3">
                 <Shield className="w-5 h-5 text-[#10B981] shrink-0 mt-0.5" />
                 <div className="text-xs">
                   <span className="font-bold text-white block">Automatic Payment Reconciliation</span>
@@ -64,7 +64,7 @@ export const PaymentsSection: React.FC = () => {
                 </div>
               </div>
 
-              <div className="p-3.5 rounded-xl bg-white/[0.04] border border-white/[0.08] flex items-start gap-3">
+              <div className="p-4 rounded-2xl glass-card-dark flex items-start gap-3">
                 <UserCheck className="w-5 h-5 text-[#F47721] shrink-0 mt-0.5" />
                 <div className="text-xs">
                   <span className="font-bold text-white block">Real-Time Spot Allocation</span>
@@ -80,7 +80,7 @@ export const PaymentsSection: React.FC = () => {
 
           {/* Right Column: Three-Stage Sequential Progression Graphic */}
           <div className="lg:col-span-7">
-            <div className="pay-stage-reveal relative mx-auto max-w-xl rounded-2xl sm:rounded-3xl bg-slate-900/80 border border-white/10 p-4 sm:p-6 shadow-2xl backdrop-blur-sm space-y-5">
+            <div className="pay-stage-reveal relative mx-auto max-w-xl rounded-2xl sm:rounded-3xl glass-surface-dark p-4 sm:p-6 space-y-5">
 
               <div className="flex items-center justify-between pb-3 border-b border-white/[0.08]">
                 <div className="flex items-center gap-2">
@@ -102,7 +102,7 @@ export const PaymentsSection: React.FC = () => {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-transparent to-black/20 flex items-end p-3 z-10 pointer-events-none">
                   <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between w-full text-xs gap-1 sm:gap-0">
-                    <span className="font-mono text-[10px] text-slate-300 bg-black/60 px-2 py-0.5 rounded border border-white/10">
+                    <span className="font-mono text-[10px] text-slate-300 glass-pill-dark px-2 py-0.5 rounded border border-white/10">
                       INSTANT UPI / CARD VERIFICATION
                     </span>
                     <span className="font-mono text-[10px] text-emerald-400 font-bold">
@@ -116,9 +116,9 @@ export const PaymentsSection: React.FC = () => {
               <div className="space-y-3.5">
 
                 {/* Stage 1: Invitation Link Received */}
-                <div className="p-3.5 sm:p-4 rounded-xl sm:rounded-2xl bg-white/[0.04] border border-white/[0.08] flex items-center justify-between gap-2">
+                <div className="p-3.5 sm:p-4 rounded-xl sm:rounded-2xl glass-card-dark flex items-center justify-between gap-2">
                   <div className="flex items-center gap-3 min-w-0">
-                    <div className="w-8 h-8 rounded-xl bg-[#F47721]/20 border border-[#F47721]/30 text-[#F47721] font-mono font-bold text-xs flex items-center justify-center shrink-0">
+                    <div className="w-8 h-8 rounded-xl bg-[#F47721]/20 border border-[#F47721]/30 text-[#F47721] font-mono font-bold text-xs flex items-center justify-center shrink-0 shadow-xs">
                       1
                     </div>
                     <div className="min-w-0">
@@ -126,7 +126,7 @@ export const PaymentsSection: React.FC = () => {
                       <div className="text-[11px] text-slate-400">Direct WhatsApp message with secure tap link</div>
                     </div>
                   </div>
-                  <span className="text-[11px] font-mono text-[#F47721] font-semibold bg-[#F47721]/15 px-2.5 py-1 rounded-full shrink-0">
+                  <span className="text-[11px] font-mono text-[#F47721] font-semibold bg-[#F47721]/15 px-2.5 py-1 rounded-full shrink-0 border border-[#F47721]/20">
                     1 TAP
                   </span>
                 </div>
@@ -137,9 +137,9 @@ export const PaymentsSection: React.FC = () => {
                 </div>
 
                 {/* Stage 2: Activity Details & Registration Form */}
-                <div className="p-3.5 sm:p-4 rounded-xl sm:rounded-2xl bg-white/[0.04] border border-white/[0.08] flex items-center justify-between gap-2">
+                <div className="p-3.5 sm:p-4 rounded-xl sm:rounded-2xl glass-card-dark flex items-center justify-between gap-2">
                   <div className="flex items-center gap-3 min-w-0">
-                    <div className="w-8 h-8 rounded-xl bg-[#F47721]/20 border border-[#F47721]/30 text-[#F47721] font-mono font-bold text-xs flex items-center justify-center shrink-0">
+                    <div className="w-8 h-8 rounded-xl bg-[#F47721]/20 border border-[#F47721]/30 text-[#F47721] font-mono font-bold text-xs flex items-center justify-center shrink-0 shadow-xs">
                       2
                     </div>
                     <div className="min-w-0">
@@ -147,7 +147,7 @@ export const PaymentsSection: React.FC = () => {
                       <div className="text-[11px] text-slate-400">Attendee info, emergency contact & pickup preference</div>
                     </div>
                   </div>
-                  <span className="text-[11px] font-mono text-slate-300 bg-white/[0.06] px-2.5 py-1 rounded-full shrink-0">
+                  <span className="text-[11px] font-mono text-slate-300 glass-pill-dark px-2.5 py-1 rounded-full shrink-0">
                     GUEST FORM
                   </span>
                 </div>
@@ -158,15 +158,15 @@ export const PaymentsSection: React.FC = () => {
                 </div>
 
                 {/* Stage 3: Payment & Instant Verified Confirmation */}
-                <div className="p-3.5 sm:p-4 rounded-xl sm:rounded-2xl bg-[#FFF9F5]/[0.06] border-2 border-[#10B981]/40 flex items-center justify-between gap-2 shadow-lg">
+                <div className="p-3.5 sm:p-4 rounded-xl sm:rounded-2xl bg-emerald-950/25 backdrop-blur-xl border border-emerald-500/40 flex items-center justify-between gap-2 shadow-[0_12px_32px_rgba(16,185,129,0.14),inset_0_1px_0_rgba(16,185,129,0.25)] transition-all">
                   <div className="flex items-center gap-3 min-w-0">
-                    <div className="w-8 h-8 rounded-xl bg-[#10B981]/20 border border-[#10B981]/40 text-[#10B981] font-mono font-bold text-xs flex items-center justify-center shrink-0">
+                    <div className="w-8 h-8 rounded-xl bg-[#10B981]/20 border border-[#10B981]/40 text-[#10B981] font-mono font-bold text-xs flex items-center justify-center shrink-0 shadow-xs">
                       <Check className="w-4 h-4" />
                     </div>
                     <div className="min-w-0">
                       <div className="text-xs font-bold text-white flex items-center gap-2 flex-wrap">
                         <span>Payment & Spot Confirmed</span>
-                        <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-[#10B981]/20 text-[#10B981] font-bold">
+                        <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-[#10B981]/20 text-[#10B981] font-bold border border-[#10B981]/30">
                           VERIFIED
                         </span>
                       </div>
