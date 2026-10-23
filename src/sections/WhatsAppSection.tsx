@@ -36,10 +36,10 @@ export const WhatsAppSection: React.FC = () => {
     <section
       ref={containerRef}
       id="whatsapp"
-      className="relative py-28 sm:py-36 bg-[#FFFCF8] text-[#111111] overflow-hidden border-t border-[#F3E5D8]"
+      className="relative py-16 sm:py-24 lg:py-36 bg-[#FFFCF8] text-[#111111] overflow-hidden border-t border-[#F3E5D8]"
     >
       <div className="container-cinematic relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 lg:gap-16 items-center">
 
           {/* Left Column: Feature Narrative */}
           <div className="lg:col-span-5 space-y-6">
@@ -86,7 +86,7 @@ export const WhatsAppSection: React.FC = () => {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 items-center">
 
                 {/* Visual A: Studio-Quality Smartphone Notification on Wooden Surface */}
-                <div className="rounded-3xl overflow-hidden bg-white border border-[#F3E5D8] p-3.5 shadow-[0_12px_40px_rgba(0,0,0,0.06)] space-y-3">
+                <div className="w-full lg:max-w-[280px] sm:max-w-none mx-auto rounded-3xl overflow-hidden bg-white border border-[#F3E5D8] p-3.5 shadow-[0_12px_40px_rgba(0,0,0,0.06)] space-y-3">
                   <div className="flex items-center justify-between text-xs font-mono text-[#6B7280] px-1">
                     <span className="flex items-center gap-1.5 text-[#111111] font-bold">
                       <MessageSquare className="w-3.5 h-3.5 text-[#25D366]" />
@@ -119,7 +119,7 @@ export const WhatsAppSection: React.FC = () => {
                 </div>
 
                 {/* Visual B: Action Itinerary Chat with Direct Tap Action */}
-                <div className="rounded-3xl overflow-hidden bg-white border border-[#F3E5D8] p-3.5 shadow-[0_12px_40px_rgba(0,0,0,0.06)] space-y-3 sm:translate-y-6">
+                <div className="w-full lg:max-w-[280px] sm:max-w-none mx-auto rounded-3xl overflow-hidden bg-white border border-[#F3E5D8] p-3.5 shadow-[0_12px_40px_rgba(0,0,0,0.06)] space-y-3 sm:translate-y-6">
                   <div className="flex items-center justify-between text-xs font-mono px-1">
                     <span className="text-[#F47721] font-bold">Actionable Itinerary</span>
                     <ArrowRight className="w-3.5 h-3.5 text-[#F47721]" />

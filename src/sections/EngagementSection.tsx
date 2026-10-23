@@ -44,10 +44,10 @@ export const EngagementSection: React.FC = () => {
     <section
       ref={containerRef}
       id="engagement"
-      className="relative py-28 sm:py-36 bg-[#FFFCF8] text-[#111111] overflow-hidden border-t border-[#F3E5D8]"
+      className="relative py-16 sm:py-24 lg:py-36 bg-[#FFFCF8] text-[#111111] overflow-hidden border-t border-[#F3E5D8]"
     >
       <div className="container-cinematic relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 lg:gap-16 items-center">
           
           {/* Left Column: Feature Narrative */}
           <div className="lg:col-span-5 space-y-6">
@@ -84,7 +84,7 @@ export const EngagementSection: React.FC = () => {
 
           {/* Right Column: Editorial Bento Composition (Activity Feed & Media Vault) */}
           <div className="lg:col-span-7">
-            <div className="eng-stage-reveal relative mx-auto max-w-xl rounded-3xl bg-white border border-[#F3E5D8] p-6 shadow-[0_16px_50px_rgba(0,0,0,0.06)] space-y-4">
+            <div className="eng-stage-reveal relative mx-auto max-w-xl rounded-2xl sm:rounded-3xl bg-white border border-[#F3E5D8] p-4 sm:p-6 shadow-[0_16px_50px_rgba(0,0,0,0.06)] space-y-4">
               
               {/* Header Bar */}
               <div className="flex items-center justify-between pb-3 border-b border-[#F3E5D8]">
@@ -191,15 +191,15 @@ export const EngagementSection: React.FC = () => {
                     <span className="font-mono text-[#10B981] text-[10px] font-bold">ACCESSIBLE OFFLINE</span>
                   </div>
                   
-                  <div className="p-2.5 rounded-xl bg-[#FFF9F5] border border-[#F3E5D8] flex items-center justify-between text-xs">
-                    <div className="flex items-center gap-2">
-                      <FileText className="w-4 h-4 text-[#F47721]" />
-                      <div>
-                        <div className="font-bold text-[#111111] text-[11px]">Rajgad_Trail_Elevation.gpx</div>
+                  <div className="p-2.5 rounded-xl bg-[#FFF9F5] border border-[#F3E5D8] flex items-center justify-between text-xs gap-2 min-w-0">
+                    <div className="flex items-center gap-2 min-w-0">
+                      <FileText className="w-4 h-4 text-[#F47721] shrink-0" />
+                      <div className="min-w-0">
+                        <div className="font-bold text-[#111111] text-[11px] truncate">Rajgad_Trail_Elevation.gpx</div>
                         <div className="text-[10px] text-[#6B7280]">Trail GPS map • 1.2 MB</div>
                       </div>
                     </div>
-                    <Download className="w-3.5 h-3.5 text-[#6B7280] hover:text-[#F47721] cursor-pointer" />
+                    <Download className="w-3.5 h-3.5 text-[#6B7280] hover:text-[#F47721] cursor-pointer shrink-0" />
                   </div>
 
                   <div className="text-[11px] text-[#6B7280]">
@@ -210,7 +210,7 @@ export const EngagementSection: React.FC = () => {
               </div>
 
               {/* Bottom Feature Metadata Footer */}
-              <div className="pt-3 border-t border-[#F3E5D8] flex items-center justify-between text-xs text-[#6B7280]">
+              <div className="pt-3 border-t border-[#F3E5D8] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-1 sm:gap-0 text-xs text-[#6B7280]">
                 <span>Shared memories keep members bonded for the next journey</span>
                 <span className="font-bold text-[#E74728] font-mono">05 / ENGAGEMENT</span>
               </div>

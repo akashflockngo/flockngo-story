@@ -36,10 +36,10 @@ export const PaymentsSection: React.FC = () => {
     <section
       ref={containerRef}
       id="payments"
-      className="relative py-28 sm:py-36 bg-[#0A0D14] text-white overflow-hidden border-t border-white/[0.08]"
+      className="relative py-16 sm:py-24 lg:py-36 bg-[#0A0D14] text-white overflow-hidden border-t border-white/[0.08]"
     >
       <div className="container-cinematic relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 lg:gap-16 items-center">
 
           {/* Left Column: Feature Narrative */}
           <div className="lg:col-span-5 space-y-6">
@@ -80,7 +80,7 @@ export const PaymentsSection: React.FC = () => {
 
           {/* Right Column: Three-Stage Sequential Progression Graphic */}
           <div className="lg:col-span-7">
-            <div className="pay-stage-reveal relative mx-auto max-w-xl rounded-3xl bg-slate-900/80 border border-white/10 p-6 shadow-2xl backdrop-blur-sm space-y-5">
+            <div className="pay-stage-reveal relative mx-auto max-w-xl rounded-2xl sm:rounded-3xl bg-slate-900/80 border border-white/10 p-4 sm:p-6 shadow-2xl backdrop-blur-sm space-y-5">
 
               <div className="flex items-center justify-between pb-3 border-b border-white/[0.08]">
                 <div className="flex items-center gap-2">
@@ -101,7 +101,7 @@ export const PaymentsSection: React.FC = () => {
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-transparent to-black/20 flex items-end p-3 z-10 pointer-events-none">
-                  <div className="flex items-center justify-between w-full text-xs">
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between w-full text-xs gap-1 sm:gap-0">
                     <span className="font-mono text-[10px] text-slate-300 bg-black/60 px-2 py-0.5 rounded border border-white/10">
                       INSTANT UPI / CARD VERIFICATION
                     </span>
@@ -116,17 +116,17 @@ export const PaymentsSection: React.FC = () => {
               <div className="space-y-3.5">
 
                 {/* Stage 1: Invitation Link Received */}
-                <div className="p-4 rounded-2xl bg-white/[0.04] border border-white/[0.08] flex items-center justify-between">
-                  <div className="flex items-center gap-3">
+                <div className="p-3.5 sm:p-4 rounded-xl sm:rounded-2xl bg-white/[0.04] border border-white/[0.08] flex items-center justify-between gap-2">
+                  <div className="flex items-center gap-3 min-w-0">
                     <div className="w-8 h-8 rounded-xl bg-[#F47721]/20 border border-[#F47721]/30 text-[#F47721] font-mono font-bold text-xs flex items-center justify-center shrink-0">
                       1
                     </div>
-                    <div>
-                      <div className="text-xs font-bold text-white">Invitation Received</div>
+                    <div className="min-w-0">
+                      <div className="text-xs font-bold text-white truncate">Invitation Received</div>
                       <div className="text-[11px] text-slate-400">Direct WhatsApp message with secure tap link</div>
                     </div>
                   </div>
-                  <span className="text-[11px] font-mono text-[#F47721] font-semibold bg-[#F47721]/15 px-2.5 py-1 rounded-full">
+                  <span className="text-[11px] font-mono text-[#F47721] font-semibold bg-[#F47721]/15 px-2.5 py-1 rounded-full shrink-0">
                     1 TAP
                   </span>
                 </div>
@@ -137,17 +137,17 @@ export const PaymentsSection: React.FC = () => {
                 </div>
 
                 {/* Stage 2: Activity Details & Registration Form */}
-                <div className="p-4 rounded-2xl bg-white/[0.04] border border-white/[0.08] flex items-center justify-between">
-                  <div className="flex items-center gap-3">
+                <div className="p-3.5 sm:p-4 rounded-xl sm:rounded-2xl bg-white/[0.04] border border-white/[0.08] flex items-center justify-between gap-2">
+                  <div className="flex items-center gap-3 min-w-0">
                     <div className="w-8 h-8 rounded-xl bg-[#F47721]/20 border border-[#F47721]/30 text-[#F47721] font-mono font-bold text-xs flex items-center justify-center shrink-0">
                       2
                     </div>
-                    <div>
-                      <div className="text-xs font-bold text-white">Review Itinerary & Details</div>
+                    <div className="min-w-0">
+                      <div className="text-xs font-bold text-white truncate">Review Itinerary & Details</div>
                       <div className="text-[11px] text-slate-400">Attendee info, emergency contact & pickup preference</div>
                     </div>
                   </div>
-                  <span className="text-[11px] font-mono text-slate-300 bg-white/[0.06] px-2.5 py-1 rounded-full">
+                  <span className="text-[11px] font-mono text-slate-300 bg-white/[0.06] px-2.5 py-1 rounded-full shrink-0">
                     GUEST FORM
                   </span>
                 </div>
@@ -158,13 +158,13 @@ export const PaymentsSection: React.FC = () => {
                 </div>
 
                 {/* Stage 3: Payment & Instant Verified Confirmation */}
-                <div className="p-4 rounded-2xl bg-[#FFF9F5]/[0.06] border-2 border-[#10B981]/40 flex items-center justify-between shadow-lg">
-                  <div className="flex items-center gap-3">
+                <div className="p-3.5 sm:p-4 rounded-xl sm:rounded-2xl bg-[#FFF9F5]/[0.06] border-2 border-[#10B981]/40 flex items-center justify-between gap-2 shadow-lg">
+                  <div className="flex items-center gap-3 min-w-0">
                     <div className="w-8 h-8 rounded-xl bg-[#10B981]/20 border border-[#10B981]/40 text-[#10B981] font-mono font-bold text-xs flex items-center justify-center shrink-0">
                       <Check className="w-4 h-4" />
                     </div>
-                    <div>
-                      <div className="text-xs font-bold text-white flex items-center gap-2">
+                    <div className="min-w-0">
+                      <div className="text-xs font-bold text-white flex items-center gap-2 flex-wrap">
                         <span>Payment & Spot Confirmed</span>
                         <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-[#10B981]/20 text-[#10B981] font-bold">
                           VERIFIED
@@ -181,7 +181,7 @@ export const PaymentsSection: React.FC = () => {
               </div>
 
               {/* Bottom Feature Metadata Footer */}
-              <div className="pt-2 border-t border-white/[0.08] flex items-center justify-between text-xs text-slate-400">
+              <div className="pt-2 border-t border-white/[0.08] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-1 sm:gap-0 text-xs text-slate-400">
                 <span>Organisers spend zero hours reconciling bank SMS alerts</span>
                 <span className="font-bold text-[#F47721] font-mono">04 / PAYMENTS</span>
               </div>
