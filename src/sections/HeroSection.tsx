@@ -52,7 +52,7 @@ export const HeroSection: React.FC = () => {
     <section
       ref={containerRef}
       id="story"
-      className="relative min-h-[90svh] flex items-center justify-center pt-32 pb-20 md:pt-40 md:pb-28 bg-[#0A0D14] text-white overflow-hidden"
+      className="relative min-h-[100svh] flex flex-col justify-center pt-16 pb-6 sm:pt-20 sm:pb-8 md:pt-24 md:pb-10 bg-[#0A0D14] text-white overflow-hidden"
     >
       {/* Subtle, restrained warm ambient light & premium brand introduction backdrop */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none select-none">
@@ -69,7 +69,7 @@ export const HeroSection: React.FC = () => {
       </div>
 
       <div className="container-cinematic relative z-10 text-center">
-        <div className="max-w-4xl mx-auto space-y-8 md:space-y-10">
+        <div className="max-w-4xl mx-auto space-y-6 sm:space-y-8 md:space-y-10">
 
           {/* Headline per specification: “Every community has a story.” */}
           <h1 className="display-hero text-white tracking-[-0.035em] text-balance">
@@ -85,11 +85,11 @@ export const HeroSection: React.FC = () => {
           </p>
 
           {/* Action CTAs */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 pt-2 sm:pt-4">
             <a
               href="#film"
               onClick={scrollToFilm}
-              className="hero-animate hero-cta-btn btn-cinematic-primary w-full sm:w-auto px-8 py-4 text-sm sm:text-base font-semibold group shadow-lg shadow-[#F47721]/20 hover:shadow-xl hover:shadow-[#F47721]/30 justify-center"
+              className="hero-animate hero-cta-btn btn-cinematic-primary w-full sm:w-auto px-6 py-3.5 sm:px-8 sm:py-4 text-sm sm:text-base font-semibold group shadow-lg shadow-[#F47721]/20 hover:shadow-xl hover:shadow-[#F47721]/30 justify-center"
             >
               <span>Watch the film</span>
               <ArrowDown className="w-4 h-4 transition-transform duration-200 group-hover:translate-y-0.5" />
@@ -99,18 +99,11 @@ export const HeroSection: React.FC = () => {
               href={BRAND_CONFIG.primaryCtaUrl}
               target="_blank"
               rel="noreferrer"
-              className="hero-animate hero-cta-btn btn-cinematic-secondary btn-cinematic-secondary-dark w-full sm:w-auto px-7 py-4 text-sm sm:text-base justify-center"
+              className="hero-animate hero-cta-btn btn-cinematic-secondary btn-cinematic-secondary-dark w-full sm:w-auto px-6 py-3.5 sm:px-7 sm:py-4 text-sm sm:text-base justify-center"
             >
               <span>Explore Platform</span>
               <ArrowUpRight className="w-4 h-4 text-slate-400 group-hover:text-white" />
             </a>
-          </div>
-
-          {/* Micro-cue */}
-          <div className="hero-animate pt-4 text-xs font-mono text-slate-400 tracking-wider uppercase">
-            <span>20.00S Cinematic Film Below</span>
-            <span className="mx-2">•</span>
-            <span className="text-[#F47721]">Editorial Storytelling</span>
           </div>
 
         </div>
