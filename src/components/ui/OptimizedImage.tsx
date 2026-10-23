@@ -62,7 +62,7 @@ export const OptimizedImage: React.FC<OptimizedImageProps> = ({
         onLoad={handleLoad}
         onError={handleError}
         className={`transition-opacity duration-500 ${
-          isLoaded ? 'opacity-100' : 'opacity-0'
+          !isLoaded ? 'opacity-0' : ''
         } ${className}`}
         {...rest}
       />
