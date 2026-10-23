@@ -46,6 +46,13 @@ export const CommunitySection: React.FC = () => {
       id="community"
       className="relative py-16 sm:py-24 lg:py-36 bg-[#FFFCF8] text-[#111111] overflow-hidden border-t border-[#F3E5D8]"
     >
+      {/* Ambient Glassmorphism Backdrop Glow Orbs */}
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none select-none">
+        <div className="absolute top-1/4 right-1/4 w-[550px] h-[550px] bg-gradient-to-br from-[#F47721]/30 via-[#FF8C38]/20 to-[#FFD8BA]/35 rounded-full blur-[85px]" />
+        <div className="absolute bottom-12 left-10 w-[480px] h-[480px] bg-gradient-to-tr from-[#F47721]/22 via-[#FBBF24]/20 to-transparent rounded-full blur-[80px]" />
+        <div className="absolute top-1/2 left-1/3 -translate-x-1/2 -translate-y-1/2 w-[380px] h-[380px] bg-emerald-400/[0.09] rounded-full blur-[90px]" />
+      </div>
+
       <div className="container-cinematic relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 lg:gap-16 items-center">
           
