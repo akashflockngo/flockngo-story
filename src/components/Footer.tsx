@@ -42,7 +42,7 @@ export const Footer: React.FC = () => {
               <a
                 href={BRAND_CONFIG.officialSiteUrl}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#F47721] hover:text-white transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#F47721] rounded"
               >
                 <span>Visit Official Website (flockngo.com)</span>
@@ -61,7 +61,7 @@ export const Footer: React.FC = () => {
                 <a
                   href={BRAND_CONFIG.primaryCtaUrl}
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
                   className="hover:text-white transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#F47721] rounded"
                 >
                   FlocknGo Platform
@@ -71,7 +71,7 @@ export const Footer: React.FC = () => {
                 <a
                   href={BRAND_CONFIG.links.eventsHub}
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
                   className="hover:text-white transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#F47721] rounded"
                 >
                   Events & Activities Hub
@@ -106,7 +106,7 @@ export const Footer: React.FC = () => {
                 <a
                   href={BRAND_CONFIG.links.linkedIn}
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
                   className="inline-flex items-center gap-1.5 hover:text-white transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#F47721] rounded"
                 >
                   <span>LinkedIn (FlocknGo)</span>
@@ -117,7 +117,7 @@ export const Footer: React.FC = () => {
                 <a
                   href={BRAND_CONFIG.links.youtube}
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
                   className="inline-flex items-center gap-1.5 hover:text-white transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#F47721] rounded"
                 >
                   <span>YouTube Community Channel</span>
@@ -128,7 +128,7 @@ export const Footer: React.FC = () => {
                 <a
                   href={BRAND_CONFIG.links.whatsappSupport}
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
                   className="inline-flex items-center gap-1.5 hover:text-white transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#F47721] rounded"
                 >
                   <span>WhatsApp Concierge (+91 96074 76642)</span>
@@ -142,7 +142,7 @@ export const Footer: React.FC = () => {
               <a
                 href={BRAND_CONFIG.links.googlePlay}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg glass-pill-dark hover:border-[#F47721]/50 hover:bg-white/[0.08] transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-[#F47721]"
               >
                 <img
@@ -160,7 +160,7 @@ export const Footer: React.FC = () => {
               <a
                 href={BRAND_CONFIG.links.appStore}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg glass-pill-dark hover:border-[#F47721]/50 hover:bg-white/[0.08] transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-[#F47721]"
               >
                 <img

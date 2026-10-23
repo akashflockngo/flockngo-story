@@ -21,41 +21,32 @@ export const OptimizedImage: React.FC<OptimizedImageProps> = ({
 }) => {
   const isLoadedInStore = useAssetStore((state) => state.loadedUrls.has(src))
   const markAssetLoaded = useAssetStore((state) => state.markAssetLoaded)
-  const [isLoaded, setIsLoaded] = useState<boolean>(() => {
-    if (typeof window !== 'undefined') {
-      return useAssetStore.getState().isAssetLoaded(src)
-    }
-    return false
-  })
+  const [internalLoaded, setInternalLoaded] = useState<boolean>(false)
   const [currentSrc, setCurrentSrc] = useState<string>(src)
   const imgRef = useRef<HTMLImageElement | null>(null)
 
-  // Synchronize immediately if Zustand store gets marked loaded
-  useEffect(() => {
-    if (isLoadedInStore) {
-      setIsLoaded(true)
-    }
-  }, [isLoadedInStore])
+  const isLoaded = isLoadedInStore || internalLoaded
 
   // Check if browser already has the image cached and completed in DOM
   useEffect(() => {
     if (imgRef.current && imgRef.current.complete && imgRef.current.naturalWidth > 0) {
       markAssetLoaded(src)
-      setIsLoaded(true)
+      setInternalLoaded(true)
     }
   }, [src, currentSrc, markAssetLoaded])
 
   useEffect(() => {
     if (priority) {
       preloadImage(src).then(() => {
-        setIsLoaded(true)
+        markAssetLoaded(src)
+        setInternalLoaded(true)
       })
     }
-  }, [src, priority])
+  }, [src, priority, markAssetLoaded])
 
   const handleLoad = () => {
     markAssetLoaded(src)
-    setIsLoaded(true)
+    setInternalLoaded(true)
   }
 
   const handleError = () => {
