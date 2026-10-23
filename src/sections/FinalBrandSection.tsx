@@ -37,13 +37,16 @@ export const FinalBrandSection: React.FC = () => {
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none select-none">
         <OptimizedImage
           src={BRAND_CONFIG.assets.closingBrand}
-          alt=""
+          alt="FlocknGo community campfire gathering at twilight under starry mountain night"
+          priority={true}
           containerClassName="w-full h-full"
-          className="w-full h-full object-cover object-bottom opacity-20 mix-blend-screen scale-105 transition-transform duration-1000"
+          className="w-full h-full object-cover object-bottom opacity-55 sm:opacity-65 scale-105 transition-transform duration-1000"
           aria-hidden="true"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0A0D14] via-[#0A0D14]/85 to-[#0A0D14]/95" />
-        <div className="absolute bottom-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-[#F47721]/[0.08] rounded-full blur-[140px]" />
+        {/* Soft atmospheric gradient vignette preserving campfire clarity while maintaining text legibility */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0A0D14] via-[#0A0D14]/45 to-[#0A0D14]/75" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0A0D14]/75 via-transparent to-transparent" />
+        <div className="absolute bottom-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-[#F47721]/[0.16] rounded-full blur-[100px]" />
       </div>
 
       <div className="container-cinematic relative z-10 w-full my-auto text-center">
